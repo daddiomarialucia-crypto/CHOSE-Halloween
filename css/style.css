@@ -1,0 +1,532 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background: #08070b;
+    color: #f5f2f7;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(118, 55, 180, 0.16),
+            transparent 45%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   GENERAL
+========================= */
+
+.page {
+    min-height: 100vh;
+    position: relative;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+
+/* =========================
+   HOME / COVER
+========================= */
+
+.cover {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 30px 20px;
+
+    position: relative;
+}
+
+.cover-content {
+    width: 100%;
+    max-width: 700px;
+
+    position: relative;
+    z-index: 1;
+}
+
+.status {
+    display: inline-block;
+
+    border: 1px solid #3d3545;
+    border-radius: 20px;
+
+    padding: 7px 14px;
+
+    margin-bottom: 35px;
+
+    font-size: 11px;
+    letter-spacing: 3px;
+
+    color: #aaa3b0;
+
+    text-transform: uppercase;
+}
+
+.status-dot {
+    display: inline-block;
+
+    width: 7px;
+    height: 7px;
+
+    margin-right: 7px;
+
+    border-radius: 50%;
+
+    background: #a75cff;
+}
+
+.pumpkin {
+    font-size: 64px;
+
+    margin-bottom: 18px;
+
+    filter:
+        drop-shadow(0 0 18px rgba(255, 115, 0, 0.18));
+}
+
+.choose-title {
+    font-size: clamp(52px, 12vw, 90px);
+
+    letter-spacing: 8px;
+
+    margin: 0;
+
+    font-weight: 800;
+}
+
+.full-name {
+    margin-top: 12px;
+
+    font-size: 13px;
+
+    letter-spacing: 3px;
+
+    color: #a9a2ae;
+
+    line-height: 1.7;
+}
+
+.event {
+    margin-top: 45px;
+}
+
+.event-title {
+    font-size: clamp(25px, 6vw, 38px);
+
+    letter-spacing: 4px;
+
+    margin: 0;
+}
+
+.event-year {
+    margin-top: 8px;
+
+    font-size: 14px;
+
+    letter-spacing: 5px;
+
+    color: #9b52ed;
+}
+
+.tagline {
+    margin: 32px auto 0;
+
+    max-width: 480px;
+
+    font-size: 17px;
+
+    line-height: 1.6;
+
+    color: #bbb4c0;
+
+    font-style: italic;
+}
+
+.warning {
+    margin: 35px auto 0;
+
+    max-width: 430px;
+
+    padding: 13px 18px;
+
+    border-left: 2px solid #8f4cff;
+
+    background: rgba(143, 76, 255, 0.05);
+
+    text-align: left;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+    color: #8f8792;
+}
+
+.warning strong {
+    color: #bca8d0;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.enter-button {
+    display: inline-block;
+
+    margin-top: 42px;
+
+    padding: 17px 38px;
+
+    border: 1px solid #8f4cff;
+    border-radius: 10px;
+
+    background: #8f4cff;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s,
+        background 0.2s,
+        box-shadow 0.2s;
+}
+
+.enter-button:hover {
+    background: #a76cff;
+
+    box-shadow:
+        0 0 25px rgba(143, 76, 255, 0.3);
+
+    transform: translateY(-2px);
+}
+
+.enter-button:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    position: absolute;
+
+    bottom: 20px;
+    left: 0;
+    right: 0;
+
+    text-align: center;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color: #514b55;
+}
+
+
+/* =========================
+   EXPERIMENTS PAGE
+========================= */
+
+.experiments-page {
+    min-height: 100vh;
+
+    padding: 40px 20px 60px;
+}
+
+.experiments-header {
+    text-align: center;
+
+    max-width: 700px;
+
+    margin: 0 auto 55px;
+}
+
+.experiments-label {
+    color: #9b52ed;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 18px;
+}
+
+.experiments-title {
+    font-size: clamp(35px, 8vw, 55px);
+
+    letter-spacing: 2px;
+
+    margin: 0;
+}
+
+.experiments-subtitle {
+    margin-top: 18px;
+
+    color: #aaa3b0;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   EXPERIMENT CARDS
+========================= */
+
+.experiment-list {
+    width: 100%;
+    max-width: 760px;
+
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.experiment-card {
+    position: relative;
+
+    padding: 25px;
+
+    border: 1px solid #302938;
+    border-radius: 14px;
+
+    background: rgba(25, 20, 31, 0.85);
+
+    transition:
+        transform 0.2s,
+        border-color 0.2s,
+        background 0.2s;
+}
+
+.experiment-card:hover {
+    transform: translateY(-3px);
+
+    border-color: #65418a;
+
+    background: rgba(32, 25, 41, 0.95);
+}
+
+.experiment-number {
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    color: #8d8592;
+
+    margin-bottom: 12px;
+}
+
+.experiment-name {
+    font-size: 24px;
+
+    margin: 0 0 8px;
+}
+
+.experiment-description {
+    color: #aaa3b0;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    margin: 0;
+
+    max-width: 600px;
+}
+
+.experiment-button {
+    display: inline-block;
+
+    margin-top: 20px;
+
+    padding: 10px 18px;
+
+    border: 1px solid #51435e;
+    border-radius: 8px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+
+    transition:
+        background 0.2s,
+        border-color 0.2s;
+}
+
+.experiment-button:hover {
+    background: #8f4cff;
+
+    border-color: #8f4cff;
+}
+
+.experiment-card.classified {
+    opacity: 0.65;
+}
+
+.experiment-card.classified .experiment-button {
+    cursor: default;
+
+    color: #756d7b;
+}
+
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-button {
+    display: block;
+
+    width: fit-content;
+
+    margin: 45px auto 0;
+
+    color: #807884;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+}
+
+.back-button:hover {
+    color: white;
+}
+
+
+/* =========================
+   PHONE
+========================= */
+
+@media (max-width: 480px) {
+
+    .cover {
+        padding: 25px 20px 65px;
+    }
+
+    .status {
+        margin-bottom: 28px;
+
+        font-size: 9px;
+
+        letter-spacing: 2px;
+    }
+
+    .pumpkin {
+        font-size: 55px;
+    }
+
+    .choose-title {
+        letter-spacing: 5px;
+    }
+
+    .full-name {
+        font-size: 10px;
+
+        letter-spacing: 2px;
+    }
+
+    .event {
+        margin-top: 35px;
+    }
+
+    .event-title {
+        letter-spacing: 2px;
+    }
+
+    .event-year {
+        font-size: 12px;
+
+        letter-spacing: 4px;
+    }
+
+    .tagline {
+        font-size: 15px;
+    }
+
+    .warning {
+        font-size: 11px;
+    }
+
+    .enter-button {
+        width: 100%;
+        max-width: 310px;
+    }
+
+    .experiments-page {
+        padding: 30px 16px 50px;
+    }
+
+    .experiments-header {
+        margin-bottom: 40px;
+    }
+
+    .experiment-card {
+        padding: 21px;
+    }
+
+    .experiment-name {
+        font-size: 21px;
+    }
+
+}
