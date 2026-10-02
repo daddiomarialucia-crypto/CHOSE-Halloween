@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>C.H.O.S.E. | Solar Cell Experiment</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+    <main class="quiz-page">
+
+
+        <div class="quiz-container">
+
+
+            <div class="quiz-header">
+
+                <div class="quiz-label">
+                    C.H.O.S.E. // EXPERIMENT 01
+                </div>
+
+                <h1>
+                    ☀️ WHAT SOLAR CELL ARE YOU?
+                </h1>
+
+                <p>
+                    A scientifically questionable
+                    personality test.
+                </p>
+
+            </div>
+
+
+            <div class="progress-container">
+
+                <div
+                    class="progress"
+                    id="progress"
+                ></div>
+
+            </div>
+
+
+            <div class="question-number" id="questionNumber">
+                QUESTION 01 / 10
+            </div>
+
+
+            <div
+                class="question"
+                id="question"
+            >
+                Question 1
+            </div>
+
+
+            <div
+                class="answers"
+                id="answers"
+            >
+
+                <button
+                    class="answer"
+                    onclick="selectAnswer(this)"
+                >
+                    Answer A
+                </button>
+
+                <button
+                    class="answer"
+                    onclick="selectAnswer(this)"
+                >
+                    Answer B
+                </button>
+
+                <button
+                    class="answer"
+                    onclick="selectAnswer(this)"
+                >
+                    Answer C
+                </button>
+
+                <button
+                    class="answer"
+                    onclick="selectAnswer(this)"
+                >
+                    Answer D
+                </button>
+
+            </div>
+
+
+            <div class="quiz-bottom">
+
+
+                <div
+                    class="counter"
+                    id="counter"
+                >
+                    1 / 10
+                </div>
+
+
+                <button
+                    class="next"
+                    id="next"
+                    onclick="nextQuestion()"
+                    disabled
+                >
+                    NEXT →
+                </button>
+
+
+            </div>
+
+
+            <a
+                href="experiments.html"
+                class="back-button"
+            >
+                ← RETURN TO EXPERIMENTS
+            </a>
+
+
+        </div>
+
+
+    </main>
+
+
+    <script src="js/quiz.js"></script>
+
+</body>
+
+</html>
