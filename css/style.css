@@ -876,3 +876,109 @@ body::before {
     }
 
 }
+
+/* =========================
+   FORM PAGE
+========================= */
+
+.field {
+    margin-bottom: 22px;
+}
+
+.field[hidden] {
+    display: none;
+}
+
+.field > label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #bbb4c0;
+
+    font-size: 14px;
+}
+
+.field input[type="text"],
+.field textarea {
+    width: 100%;
+
+    padding: 15px;
+
+    border: 2px solid #40364a;
+    border-radius: 12px;
+
+    background: #1c1523;
+
+    color: white;
+
+    font-family: inherit;
+    font-size: 16px;
+
+    resize: vertical;
+}
+
+.field input[type="text"]:focus,
+.field textarea:focus {
+    outline: none;
+
+    border-color: #8f4cff;
+}
+
+.field ::placeholder {
+    color: #756d7b;
+}
+
+.choices {
+    display: flex;
+    gap: 12px;
+}
+
+.choice {
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 15px;
+
+    border: 2px solid #40364a;
+    border-radius: 12px;
+
+    background: #1c1523;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+.choice:has(input:checked) {
+    border-color: #8f4cff;
+
+    background: #302044;
+}
+
+.choice input {
+    accent-color: #8f4cff;
+}
+
+.form-message {
+    margin-top: 20px;
+
+    color: #e08a8a;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+.form-message.success {
+    padding: 30px 10px;
+
+    color: #f5f2f7;
+
+    font-size: 20px;
+
+    text-align: center;
+}
