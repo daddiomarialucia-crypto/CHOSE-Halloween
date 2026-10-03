@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C.H.O.S.E. | Researcher Registration</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎃</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <main class="quiz-page">
+        <div class="quiz-container">
+
+            <div class="quiz-header">
+                <div class="quiz-label">C.H.O.S.E. // EXPERIMENT 01</div>
+                <h1>📝 RESEARCHER REGISTRATION</h1>
+                <p>Tell us who is coming to the lab on Halloween night.</p>
+            </div>
+
+            <form id="form">
+
+                <div class="field">
+                    <label for="nome">First name</label>
+                    <input type="text" id="nome" name="nome" required autocomplete="given-name">
+                </div>
+
+                <div class="field">
+                    <label for="cognome">Last name</label>
+                    <input type="text" id="cognome" name="cognome" required autocomplete="family-name">
+                </div>
+
+                <div class="field">
+                    <label for="restrizioni">Food restrictions or allergies</label>
+                    <textarea id="restrizioni" name="restrizioni" rows="2" placeholder="Leave empty if none"></textarea>
+                </div>
+
+                <div class="field">
+                    <label>Will you drink alcohol?</label>
+                    <div class="choices">
+                        <label class="choice"><input type="radio" name="alcol" value="si" required> Yes</label>
+                        <label class="choice"><input type="radio" name="alcol" value="no"> No</label>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Do you want to enter the costume contest?</label>
+                    <div class="choices">
+                        <label class="choice"><input type="radio" name="costume" value="si" required> Yes</label>
+                        <label class="choice"><input type="radio" name="costume" value="no"> No</label>
+                    </div>
+                </div>
+
+                <div class="field" id="costumeBox" hidden>
+                    <label for="nomeCostume">Name of your costume</label>
+                    <input type="text" id="nomeCostume" name="nomeCostume" placeholder="e.g. Perovskite Vampire">
+                </div>
+
+                <div class="field">
+                    <label for="porto">What can you bring?</label>
+                    <input type="text" id="porto" name="porto" placeholder="Food, drinks, speakers... or nothing">
+                </div>
+
+                <div class="field">
+                    <label for="canzone">Song request</label>
+                    <input type="text" id="canzone" name="canzone" placeholder="Optional">
+                </div>
+
+                <div class="quiz-bottom">
+                    <button type="submit" class="next" id="submit">REGISTER</button>
+                    <div class="form-message" id="message" hidden></div>
+                </div>
+
+            </form>
+
+            <a href="experiments.html" class="back-button">← RETURN TO EXPERIMENTS</a>
+
+        </div>
+    </main>
+
+    <script src="js/form.js"></script>
+</body>
+
+</html>
