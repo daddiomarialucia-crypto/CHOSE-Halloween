@@ -1,5 +1,5 @@
 // Incolla qui l'URL dell'app web di Google Apps Script
-const SCRIPT_URL = "INCOLLA_QUI_L_URL";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxQflHOHp5n1X5xETm_AZFr0DexxANyGDaS0LfX6cMEdZp5jMyIvNUfQI2glB-9bM8IyQ/exec";
 
 const form = document.getElementById("form");
 const message = document.getElementById("message");
