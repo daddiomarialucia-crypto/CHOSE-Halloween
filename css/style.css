@@ -1038,3 +1038,141 @@ body::before {
 
     font-size: 14px;
 }
+/* =========================
+   BEER PONG PAGE
+========================= */
+
+.bracket-container {
+    max-width: 700px;
+}
+
+.bracket {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    align-items: center;
+}
+
+.round {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.match {
+    padding: 16px;
+
+    border: 1px solid #302938;
+    border-radius: 14px;
+
+    background: rgba(25, 20, 31, 0.85);
+}
+
+.match-title {
+    margin-bottom: 12px;
+
+    color: #8d8592;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+}
+
+.team {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-top: 8px;
+    padding: 12px 14px;
+
+    border: 2px solid #40364a;
+    border-radius: 10px;
+
+    background: #1c1523;
+
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.team-dot {
+    width: 12px;
+    height: 12px;
+
+    border-radius: 50%;
+
+    background: #756d7b;
+}
+
+.team.red .team-dot { background: #e5484d; }
+.team.blue .team-dot { background: #3b82f6; }
+.team.green .team-dot { background: #30a46c; }
+.team.yellow .team-dot { background: #f5c518; }
+
+.team.red.won { border-color: #e5484d; }
+.team.blue.won { border-color: #3b82f6; }
+.team.green.won { border-color: #30a46c; }
+.team.yellow.won { border-color: #f5c518; }
+
+.team.lost {
+    opacity: 0.4;
+}
+
+.team.tbd {
+    color: #756d7b;
+
+    font-weight: normal;
+}
+
+.match-score {
+    margin-top: 12px;
+
+    color: #aaa3b0;
+
+    font-size: 13px;
+
+    text-align: center;
+}
+
+.champion {
+    margin-bottom: 28px;
+    padding: 20px;
+
+    border: 2px solid #8f4cff;
+    border-radius: 14px;
+
+    background: #302044;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    text-align: center;
+}
+
+.champion.red { border-color: #e5484d; }
+.champion.blue { border-color: #3b82f6; }
+.champion.green { border-color: #30a46c; }
+.champion.yellow { border-color: #f5c518; }
+
+.updated {
+    margin-top: 22px;
+
+    color: #756d7b;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    text-align: center;
+}
+
+@media (max-width: 560px) {
+
+    .bracket {
+        grid-template-columns: 1fr;
+    }
+
+}
