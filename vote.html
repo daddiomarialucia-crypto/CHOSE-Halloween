@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>C.H.O.S.E. | Best Costume</title>
+    <title>C.H.O.S.E. | Costume Contest</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎃</text></svg>">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -15,35 +15,80 @@
 
             <div class="quiz-header">
                 <div class="quiz-label">C.H.O.S.E. // EXPERIMENT 03</div>
-                <h1>🏆 BEST COSTUME</h1>
-                <p>One vote each. Choose wisely.</p>
+                <h1>🏆 COSTUME CONTEST</h1>
+                <p>Sign up with your costume, then vote for the best one.</p>
             </div>
 
-            <div id="content">
+            <div class="tabs">
+                <button type="button" class="tab" id="tabSignup">1 · SIGN UP</button>
+                <button type="button" class="tab" id="tabVote">2 · VOTE</button>
+            </div>
 
-                <div class="field">
-                    <label>Who are you? (as registered)</label>
-                    <div class="name-grid">
-                        <input type="text" id="voterNome" placeholder="First name" autocomplete="given-name">
-                        <input type="text" id="voterCognome" placeholder="Last name" autocomplete="family-name">
+
+            <!-- 1. ISCRIZIONE AL CONTEST -->
+
+            <section id="panelSignup">
+
+                <div class="empty" id="signupClosed" hidden></div>
+
+                <div id="signupForm">
+
+                    <div class="field">
+                        <label>Who are you?</label>
+                        <div class="name-grid">
+                            <input type="text" id="cNome" placeholder="First name" autocomplete="given-name">
+                            <input type="text" id="cCognome" placeholder="Last name" autocomplete="family-name">
+                        </div>
                     </div>
+
+                    <div class="field">
+                        <label for="cCostume">What are you dressing up as?</label>
+                        <input type="text" id="cCostume" placeholder="e.g. Perovskite Vampire">
+                    </div>
+
+                    <div class="quiz-bottom">
+                        <button type="button" class="next" id="signupBtn">SIGN UP</button>
+                        <div class="form-message" id="signupMsg" hidden></div>
+                    </div>
+
                 </div>
 
-                <div class="field">
-                    <input type="text" id="search" placeholder="Search by name or costume...">
+            </section>
+
+
+            <!-- 2. VOTAZIONE -->
+
+            <section id="panelVote" hidden>
+
+                <div class="empty" id="voteClosed" hidden></div>
+
+                <div id="voteArea">
+
+                    <div class="field">
+                        <label>Who are you? (as registered)</label>
+                        <div class="name-grid">
+                            <input type="text" id="voterNome" placeholder="First name" autocomplete="given-name">
+                            <input type="text" id="voterCognome" placeholder="Last name" autocomplete="family-name">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <input type="text" id="search" placeholder="Search by name or costume...">
+                    </div>
+
+                    <div class="answers" id="list">
+                        <div class="empty">Loading contestants...</div>
+                    </div>
+
+                    <div class="vote-bar">
+                        <div class="picked" id="picked">Tap a name to choose</div>
+                        <button type="button" class="next" id="vote" disabled>VOTE</button>
+                        <div class="form-message" id="voteMsg" hidden></div>
+                    </div>
+
                 </div>
 
-                <div class="answers" id="list">
-                    <div class="empty">Loading contestants...</div>
-                </div>
-
-                <div class="vote-bar">
-                    <div class="picked" id="picked">Tap a name to choose</div>
-                    <button type="button" class="next" id="vote" disabled>VOTE</button>
-                    <div class="form-message" id="message" hidden></div>
-                </div>
-
-            </div>
+            </section>
 
             <a href="experiments.html" class="back-button">← RETURN TO EXPERIMENTS</a>
 
