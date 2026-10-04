@@ -4,15 +4,24 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxQflHOHp5n1X5xETm_A
 const form = document.getElementById("form");
 const message = document.getElementById("message");
 const submitButton = document.getElementById("submit");
-const costumeBox = document.getElementById("costumeBox");
-const costumeName = document.getElementById("nomeCostume");
+const plusBox = document.getElementById("plusBox");
 
-form.querySelectorAll('input[name="costume"]').forEach(function (radio) {
+// Campi del +1 obbligatori solo se si porta un +1
+const PLUS_REQUIRED = ["piuNome", "piuCognome", "piuAlcol", "piuGiochi"];
+
+form.querySelectorAll('input[name="plusUno"]').forEach(function (radio) {
     radio.addEventListener("change", function () {
-        const joining = form.elements["costume"].value === "si";
-        costumeBox.hidden = !joining;
-        costumeName.required = joining;
-        if (!joining) costumeName.value = "";
+        const bringing = form.elements["plusUno"].value === "si";
+        plusBox.hidden = !bringing;
+
+        plusBox.querySelectorAll("input, textarea").forEach(function (field) {
+            field.required = bringing && PLUS_REQUIRED.indexOf(field.name) !== -1;
+
+            if (!bringing) {
+                if (field.type === "radio") field.checked = false;
+                else field.value = "";
+            }
+        });
     });
 });
 
@@ -33,9 +42,14 @@ form.addEventListener("submit", async function (event) {
             body: JSON.stringify(data)
         });
 
-        form.innerHTML =
-            '<div class="form-message success">REGISTRATION COMPLETE 🎃<br>' +
-            "See you in the lab, " + data.nome + ".</div>";
+        const box = document.createElement("div");
+        box.className = "form-message success";
+        box.appendChild(document.createTextNode("REGISTRATION COMPLETE 🎃"));
+        box.appendChild(document.createElement("br"));
+        box.appendChild(document.createTextNode("See you in the lab, " + data.nome + "."));
+
+        form.innerHTML = "";
+        form.appendChild(box);
     } catch (error) {
         message.textContent = "Something went wrong. Check your connection and try again.";
         message.hidden = false;
