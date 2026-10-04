@@ -982,3 +982,59 @@ body::before {
 
     text-align: center;
 }
+
+/* =========================
+   VOTE PAGE
+========================= */
+
+.name-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.candidate-costume {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #aaa3b0;
+
+    font-size: 13px;
+}
+
+.answer.selected .candidate-costume {
+    color: #d0c4e0;
+}
+
+.empty {
+    padding: 30px 10px;
+
+    color: #756d7b;
+
+    font-size: 14px;
+
+    text-align: center;
+}
+
+.vote-bar {
+    position: sticky;
+    bottom: 0;
+
+    margin-top: 20px;
+    padding: 24px 0 14px;
+
+    background: linear-gradient(to bottom, rgba(8, 7, 11, 0), #08070b 35%);
+
+    text-align: center;
+}
+
+.picked {
+    min-height: 20px;
+
+    margin-bottom: 12px;
+
+    color: #bbb4c0;
+
+    font-size: 14px;
+}
