@@ -1,32 +1,69 @@
 // Stesso URL che hai messo in form.js
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxQflHOHp5n1X5xETm_AZFr0DexxANyGDaS0LfX6cMEdZp5jMyIvNUfQI2glB-9bM8IyQ/exec";
 
-const content = document.getElementById("content");
-const listEl = document.getElementById("list");
-const searchEl = document.getElementById("search");
-const pickedEl = document.getElementById("picked");
-const voteButton = document.getElementById("vote");
-const message = document.getElementById("message");
+const $ = function (id) { return document.getElementById(id); };
+
+const listEl = $("list");
+const searchEl = $("search");
+const pickedEl = $("picked");
+const voteButton = $("vote");
+const voteMsg = $("voteMsg");
+const signupMsg = $("signupMsg");
+const signupButton = $("signupBtn");
 
 let candidates = [];
 let selected = null;
+let firstLoad = true;
 
-const ERRORS = {
-    closed: "Voting is not open yet.",
-    not_registered: "We can't find you in the registration list. Check your name or ask the organizers.",
+const VOTE_ERRORS = {
+    closed: "Voting is not open right now.",
+    not_registered: "We can't find you in the lists. Check your name or ask the organizers.",
     self_vote: "You can't vote for yourself!",
     already_voted: "You have already voted. One vote each!",
     bad_target: "This contestant is not valid. Refresh the page and try again."
 };
 
+const SIGNUP_ERRORS = {
+    signup_closed: "Sign-ups are closed.",
+    missing: "Fill in all the fields."
+};
+
+
+/* ---------- utilita' ---------- */
+
+function esc(text) {
+    return String(text).replace(/[&<>"]/g, function (c) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+}
+
 function clean(text) {
     return String(text).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
-function showMessage(text) {
-    message.textContent = text;
-    message.hidden = false;
+function show(el, text) {
+    el.textContent = text;
+    el.hidden = false;
 }
+
+function whenText(iso) {
+    return new Date(iso).toLocaleString([], {
+        day: "numeric", month: "short", hour: "2-digit", minute: "2-digit"
+    });
+}
+
+function setTab(name) {
+    $("panelSignup").hidden = name !== "signup";
+    $("panelVote").hidden = name !== "vote";
+    $("tabSignup").classList.toggle("active", name === "signup");
+    $("tabVote").classList.toggle("active", name === "vote");
+}
+
+$("tabSignup").addEventListener("click", function () { setTab("signup"); });
+$("tabVote").addEventListener("click", function () { setTab("vote"); });
+
+
+/* ---------- lista candidati ---------- */
 
 function render() {
     const query = clean(searchEl.value.trim());
@@ -68,7 +105,7 @@ function render() {
             selected = c;
             pickedEl.textContent = "Your vote: " + c.nome + " " + c.cognome;
             voteButton.disabled = false;
-            message.hidden = true;
+            voteMsg.hidden = true;
             render();
         });
 
@@ -76,42 +113,110 @@ function render() {
     });
 }
 
+searchEl.addEventListener("input", render);
+
+
+/* ---------- stato (iscrizioni / voti a tempo) ---------- */
+
 async function load() {
     try {
         const response = await fetch(SCRIPT_URL);
         const data = await response.json();
 
-        if (!data.open) {
-            content.innerHTML = '<div class="empty">Voting opens on Halloween night. 🎃</div>';
-            return;
+        // iscrizione
+        $("signupForm").hidden = !data.signup;
+        $("signupClosed").hidden = data.signup;
+        $("signupClosed").textContent = data.voting
+            ? "Sign-ups are closed. Time to vote! 🗳️"
+            : "Sign-ups are closed. 🎃";
+
+        // votazione
+        $("voteArea").hidden = !data.voting;
+        $("voteClosed").hidden = data.voting;
+
+        if (data.signup) {
+            $("voteClosed").textContent = data.switchAt
+                ? "Voting opens on " + whenText(data.switchAt) + ", when sign-ups close. 🎃"
+                : "Voting opens when sign-ups close. 🎃";
+        } else {
+            $("voteClosed").textContent = "Voting is closed. The winner is coming... 🏆";
         }
 
         candidates = data.candidates.sort(function (a, b) {
             return a.nome.localeCompare(b.nome, "it", { sensitivity: "base" }) ||
                    a.cognome.localeCompare(b.cognome, "it", { sensitivity: "base" });
         });
-
         render();
+
+        if (firstLoad) {
+            setTab(data.signup ? "signup" : "vote");
+            firstLoad = false;
+        }
     } catch (error) {
+        if (firstLoad) {
+            setTab("signup");
+            firstLoad = false;
+        }
         listEl.innerHTML = '<div class="empty">Could not load the list. Refresh the page.</div>';
     }
 }
 
-searchEl.addEventListener("input", render);
+
+/* ---------- invio iscrizione al contest ---------- */
+
+signupButton.addEventListener("click", async function () {
+    const nome = $("cNome").value.trim();
+    const cognome = $("cCognome").value.trim();
+    const costume = $("cCostume").value.trim();
+
+    if (!nome || !cognome || !costume) {
+        show(signupMsg, SIGNUP_ERRORS.missing);
+        return;
+    }
+
+    signupButton.disabled = true;
+    signupButton.textContent = "SENDING...";
+    signupMsg.hidden = true;
+
+    try {
+        const response = await fetch(SCRIPT_URL, {
+            method: "POST",
+            body: JSON.stringify({ action: "costume", nome: nome, cognome: cognome, costume: costume })
+        });
+        const data = await response.json();
+
+        if (data.ok) {
+            $("signupForm").innerHTML =
+                '<div class="form-message success">YOU\'RE IN! 🎃<br>' + esc(nome) +
+                ' as ' + esc(costume) + '.<br>Voting opens after sign-ups close.</div>';
+            return;
+        }
+
+        show(signupMsg, SIGNUP_ERRORS[data.error] || "Something went wrong. Try again.");
+    } catch (error) {
+        show(signupMsg, "Something went wrong. Check your connection and try again.");
+    }
+
+    signupButton.disabled = false;
+    signupButton.textContent = "SIGN UP";
+});
+
+
+/* ---------- invio voto ---------- */
 
 voteButton.addEventListener("click", async function () {
-    const voterNome = document.getElementById("voterNome").value.trim();
-    const voterCognome = document.getElementById("voterCognome").value.trim();
+    const voterNome = $("voterNome").value.trim();
+    const voterCognome = $("voterCognome").value.trim();
 
     if (!voterNome || !voterCognome) {
-        showMessage("Enter your first and last name at the top first.");
+        show(voteMsg, "Enter your first and last name at the top first.");
         window.scrollTo(0, 0);
         return;
     }
 
     voteButton.disabled = true;
     voteButton.textContent = "SENDING...";
-    message.hidden = true;
+    voteMsg.hidden = true;
 
     try {
         const response = await fetch(SCRIPT_URL, {
@@ -127,15 +232,14 @@ voteButton.addEventListener("click", async function () {
         const data = await response.json();
 
         if (data.ok) {
-            content.innerHTML =
-                '<div class="form-message success">VOTE RECORDED 🎃<br>Thank you, ' +
-                voterNome.replace(/[<>&]/g, "") + ".</div>";
+            $("voteArea").innerHTML =
+                '<div class="form-message success">VOTE RECORDED 🎃<br>Thank you, ' + esc(voterNome) + '.</div>';
             return;
         }
 
-        showMessage(ERRORS[data.error] || "Something went wrong. Try again.");
+        show(voteMsg, VOTE_ERRORS[data.error] || "Something went wrong. Try again.");
     } catch (error) {
-        showMessage("Something went wrong. Check your connection and try again.");
+        show(voteMsg, "Something went wrong. Check your connection and try again.");
     }
 
     voteButton.disabled = false;
@@ -143,3 +247,4 @@ voteButton.addEventListener("click", async function () {
 });
 
 load();
+setInterval(load, 30000);
