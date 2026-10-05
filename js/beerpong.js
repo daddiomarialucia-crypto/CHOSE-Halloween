@@ -5,6 +5,9 @@ const bracketEl = document.getElementById("bracket");
 const updatedEl = document.getElementById("updated");
 const teamsEl = document.getElementById("teams");
 
+// Link organizzatori: beerpong.html?org=CHIAVE
+const ORG = new URLSearchParams(window.location.search).get("org") || "";
+
 const COLORS = { red: "#e5484d", blue: "#3b82f6", green: "#30a46c", yellow: "#f5c518" };
 const LINE = "#5b4a70";
 
@@ -182,13 +185,22 @@ function render(matches) {
 
 /* ---------- squadre ---------- */
 
-function renderTeams(teams) {
+function renderTeams(teams, isPublic) {
     teamsEl.innerHTML = "";
 
     const title = document.createElement("div");
     title.className = "teams-title";
     title.textContent = "THE TEAMS";
     teamsEl.appendChild(title);
+
+    if (teams && teams.length && !isPublic) {
+        const preview = document.createElement("div");
+        preview.className = "team-note";
+        preview.style.textAlign = "center";
+        preview.style.margin = "0 0 14px";
+        preview.textContent = "Organizers preview: guests can't see the teams yet.";
+        teamsEl.appendChild(preview);
+    }
 
     if (!teams || !teams.length) {
         const note = document.createElement("div");
@@ -235,10 +247,10 @@ function renderTeams(teams) {
 
 async function load() {
     try {
-        const response = await fetch(SCRIPT_URL + "?what=bracket");
+        const response = await fetch(SCRIPT_URL + "?what=bracket" + (ORG ? "&org=" + encodeURIComponent(ORG) : ""));
         const data = await response.json();
         render(data.matches);
-        renderTeams(data.teams);
+        renderTeams(data.teams, data.teamsPublic);
     } catch (error) {
         if (!bracketEl.querySelector("svg")) {
             bracketEl.innerHTML = '<div class="empty">Could not load the bracket. Refresh the page.</div>';
