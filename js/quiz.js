@@ -10,6 +10,9 @@ const scores = {
     DSSC: 0
 };
 
+// Le risposte della domanda corrente, in ordine mescolato
+let currentAnswers = [];
+
 
 const questions = [
 
@@ -194,8 +197,8 @@ const questions = [
 
         answers: [
             {
-                text: "Something classic, perfectly executed and impossible to criticize.",
-                type: "SILICON"
+                text: "Something that glows in the dark and makes people wonder how it works.",
+                type: "DSSC"
             },
             {
                 text: "Something nobody has ever seen before.",
@@ -219,8 +222,8 @@ const questions = [
 
         answers: [
             {
-                text: "Five minutes? That's plenty. Let's rebuild it.",
-                type: "SILICON"
+                text: "Stare at it in silence for a moment. The explanation is hiding somewhere in there.",
+                type: "DSSC"
             },
             {
                 text: "Well... that wasn't supposed to happen. Interesting.",
@@ -252,8 +255,8 @@ const questions = [
                 type: "PEROVSKITE"
             },
             {
-                text: "They somehow made everything work.",
-                type: "CIGS"
+                text: "They made the whole night a little more colorful.",
+                type: "ORGANIC"
             },
             {
                 text: "There was definitely something unusual about them.",
@@ -265,9 +268,96 @@ const questions = [
 ];
 
 
+const RESULTS = {
+
+    SILICON: {
+        emoji: "☀️",
+        name: "SILICON",
+        title: "The Reliable Classic",
+        text: "You are the benchmark everyone else is measured against. You show up, you do the job and you rarely make a scene. Nobody throws a good party without someone like you.",
+        power: "Decades of proven reliability.",
+        weakness: "A little rigid, a little heavy, and quietly offended when someone calls you boring."
+    },
+
+    PEROVSKITE: {
+        emoji: "🔮",
+        name: "PEROVSKITE",
+        title: "The Brilliant Troublemaker",
+        text: "Spectacular efficiency, unpredictable behavior. You light up the room and nobody is entirely sure how long it will last.",
+        power: "Record-breaking performance in record time.",
+        weakness: "Stability. Please keep away from humidity, heat and unexpected situations."
+    },
+
+    CIGS: {
+        emoji: "🧩",
+        name: "CIGS",
+        title: "The Clever Problem Solver",
+        text: "Copper, indium, gallium, selenium: four ingredients that shouldn't work together, and somehow do. You are the one who quietly fixes everything while the others argue.",
+        power: "Thin, flexible and surprisingly effective.",
+        weakness: "The recipe is complicated, and nobody remembers that you did the hard part."
+    },
+
+    ORGANIC: {
+        emoji: "🎨",
+        name: "ORGANIC",
+        title: "The Flexible Free Spirit",
+        text: "Light, colorful and endlessly tunable. You bend without breaking, rewrite the rules and make everything look better in the process.",
+        power: "Flexibility and style.",
+        weakness: "Needs encapsulation, moral support and a plan for tomorrow morning."
+    },
+
+    DSSC: {
+        emoji: "🧪",
+        name: "DSSC",
+        title: "The Mysterious Dreamer",
+        text: "Dye, electrolyte and a lot of atmosphere. You are inspired by nature, you work beautifully in dim light and you were clearly made for nights like this.",
+        power: "Performs best when the lights are low.",
+        weakness: "There is liquid inside. Handle with care, leaks are possible."
+    },
+
+    TANDEM: {
+        emoji: "🥞",
+        name: "TANDEM",
+        title: "The Overachiever",
+        text: "You are not one personality but two, stacked on top of each other. Together you capture more than either could alone.",
+        power: "Efficiency beyond what a single material can reach.",
+        weakness: "Complicated to build and even harder to explain at a party."
+    },
+
+    MULTIJUNCTION: {
+        emoji: "🛰️",
+        name: "MULTIJUNCTION",
+        title: "The Impossible to Classify",
+        text: "Three or more personalities tied for first place. You harvest every color of the party at once.",
+        power: "Captures the whole spectrum.",
+        weakness: "Extremely expensive. Usually found on satellites."
+    }
+
+};
+
+
+function shuffle(list) {
+
+    for (let i = list.length - 1; i > 0; i--) {
+
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = list[i];
+
+        list[i] = list[j];
+        list[j] = temp;
+
+    }
+
+    return list;
+}
+
+
 function loadQuestion() {
 
     const question = questions[currentQuestion];
+
+    // ordine delle risposte diverso a ogni domanda
+    currentAnswers = shuffle(question.answers.slice());
 
     document.getElementById("question").textContent =
         question.question;
@@ -293,7 +383,7 @@ function loadQuestion() {
     answerButtons.forEach(function(button, index) {
 
         button.textContent =
-            question.answers[index].text;
+            currentAnswers[index].text;
 
         button.classList.remove("selected");
 
@@ -334,9 +424,7 @@ function nextQuestion() {
         answerButtons.indexOf(selectedAnswer);
 
     const selectedType =
-        questions[currentQuestion]
-            .answers[selectedIndex]
-            .type;
+        currentAnswers[selectedIndex].type;
 
     scores[selectedType]++;
 
@@ -353,39 +441,135 @@ function nextQuestion() {
 }
 
 
+function pickResult() {
+
+    const types = Object.keys(scores);
+
+    const highest = Math.max.apply(null, types.map(function(type) {
+        return scores[type];
+    }));
+
+    const leaders = types.filter(function(type) {
+        return scores[type] === highest;
+    });
+
+    // un solo primo posto: quel tipo
+    if (leaders.length === 1) {
+        return { key: leaders[0], text: RESULTS[leaders[0]].text };
+    }
+
+    // pareggio tra due: tandem
+    if (leaders.length === 2) {
+        return {
+            key: "TANDEM",
+            text: RESULTS.TANDEM.text +
+                  " Your two halves: " + leaders[0] + " + " + leaders[1] + "."
+        };
+    }
+
+    // pareggio tra tre o piu': multigiunzione
+    return { key: "MULTIJUNCTION", text: RESULTS.MULTIJUNCTION.text };
+}
+
+
+function makeTrait(label, text) {
+
+    const trait = document.createElement("div");
+    trait.className = "trait";
+
+    const strong = document.createElement("strong");
+    strong.textContent = label;
+
+    trait.appendChild(strong);
+    trait.appendChild(document.createTextNode(text));
+
+    return trait;
+}
+
+
 function finishQuiz() {
 
-    let winner = "SILICON";
-    let highestScore = scores.SILICON;
+    const picked = pickResult();
+    const result = RESULTS[picked.key];
+
+    // nasconde le domande
+    [
+        ".progress-container",
+        "#questionNumber",
+        "#question",
+        "#answers",
+        ".quiz-bottom"
+    ].forEach(function(selector) {
+        document.querySelector(selector).style.display = "none";
+    });
+
+    const box = document.createElement("div");
+    box.className = "result";
+
+    function add(tag, className, text) {
+        const element = document.createElement(tag);
+        element.className = className;
+        element.textContent = text;
+        box.appendChild(element);
+    }
+
+    add("div", "result-emoji", result.emoji);
+    add("div", "result-label", "YOUR SOLAR CELL IS");
+    add("h2", "result-name", result.name);
+    add("div", "result-title", result.title);
+    add("p", "result-text", picked.text);
+
+    box.appendChild(makeTrait("SUPERPOWER", result.power));
+    box.appendChild(makeTrait("WEAKNESS", result.weakness));
+
+    // percentuali
+    const bars = document.createElement("div");
+    bars.className = "result-bars";
 
     Object.keys(scores).forEach(function(type) {
 
-        if (scores[type] > highestScore) {
+        const percent = scores[type] / totalQuestions * 100;
 
-            highestScore = scores[type];
-            winner = type;
+        const row = document.createElement("div");
+        row.className = "bar-row";
 
-        }
+        const label = document.createElement("span");
+        label.textContent = RESULTS[type].name;
+
+        const track = document.createElement("div");
+        track.className = "bar-track";
+
+        const fill = document.createElement("div");
+        fill.className = "bar-fill";
+        fill.style.width = percent + "%";
+        track.appendChild(fill);
+
+        const value = document.createElement("span");
+        value.textContent = Math.round(percent) + "%";
+
+        row.appendChild(label);
+        row.appendChild(track);
+        row.appendChild(value);
+        bars.appendChild(row);
 
     });
 
+    box.appendChild(bars);
 
-    document.getElementById("question").textContent =
-        "EXPERIMENT COMPLETE! 🎃";
+    add("p", "result-note", "Screenshot your result and send it to the group chat.");
 
-    document.getElementById("questionNumber").textContent =
-        "EXPERIMENT COMPLETE";
+    const again = document.createElement("button");
+    again.className = "next";
+    again.textContent = "TAKE THE TEST AGAIN";
+    again.addEventListener("click", function() {
+        window.location.reload();
+    });
+    box.appendChild(again);
 
-    document.getElementById("answers").style.display =
-        "none";
+    const back = document.querySelector(".back-button");
+    back.parentNode.insertBefore(box, back);
 
-    document.getElementById("next").style.display =
-        "none";
-
-    document.getElementById("counter").textContent =
-        winner;
-
-    console.log("FINAL SCORES:", scores);
+    window.scrollTo(0, 0);
 }
 
 
