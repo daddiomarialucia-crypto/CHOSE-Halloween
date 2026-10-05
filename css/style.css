@@ -1212,3 +1212,79 @@ body::before {
 
     color: white;
 }
+
+/* =========================
+   SQUADRE (PAGINA TORNEO)
+========================= */
+
+#teams {
+    margin-top: 30px;
+}
+
+.teams-title {
+    margin-bottom: 16px;
+
+    color: #9b52ed;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    text-align: center;
+}
+
+.teams-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.team-card {
+    padding: 16px;
+
+    border: 1px solid #302938;
+    border-top: 3px solid #756d7b;
+    border-radius: 14px;
+
+    background: rgba(25, 20, 31, 0.85);
+}
+
+.team-card.red { border-top-color: #e5484d; }
+.team-card.blue { border-top-color: #3b82f6; }
+.team-card.green { border-top-color: #30a46c; }
+.team-card.yellow { border-top-color: #f5c518; }
+
+.team-card.extra {
+    grid-column: 1 / -1;
+
+    border-top-color: #9b52ed;
+}
+
+.team-card h3 {
+    margin: 0 0 10px;
+
+    font-size: 14px;
+
+    letter-spacing: 2px;
+}
+
+.team-note {
+    margin: -4px 0 10px;
+
+    color: #756d7b;
+
+    font-size: 12px;
+}
+
+.team-card ul {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+
+    color: #bbb4c0;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
