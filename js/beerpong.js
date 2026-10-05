@@ -1,8 +1,9 @@
 // Stesso URL che hai messo in form.js
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxQflHOHp5n1X5xETm_AZFr0DexxANyGDaS0LfX6cMEdZp5jMyIvNUfQI2glB-9bM8IyQ/exec";
+const SCRIPT_URL = "INCOLLA_QUI_L_URL";
 
 const bracketEl = document.getElementById("bracket");
 const updatedEl = document.getElementById("updated");
+const teamsEl = document.getElementById("teams");
 
 const COLORS = { red: "#e5484d", blue: "#3b82f6", green: "#30a46c", yellow: "#f5c518" };
 const LINE = "#5b4a70";
@@ -178,11 +179,66 @@ function render(matches) {
         String(now.getMinutes()).padStart(2, "0");
 }
 
+
+/* ---------- squadre ---------- */
+
+function renderTeams(teams) {
+    teamsEl.innerHTML = "";
+
+    const title = document.createElement("div");
+    title.className = "teams-title";
+    title.textContent = "THE TEAMS";
+    teamsEl.appendChild(title);
+
+    if (!teams || !teams.length) {
+        const note = document.createElement("div");
+        note.className = "empty";
+        note.textContent = "Teams will be revealed on the night. 🎃";
+        teamsEl.appendChild(note);
+        return;
+    }
+
+    const grid = document.createElement("div");
+    grid.className = "teams-grid";
+
+    teams.forEach(function (team) {
+        const key = colorKey(team.name);
+
+        const card = document.createElement("div");
+        card.className = "team-card " + (key || "extra");
+
+        const heading = document.createElement("h3");
+        heading.textContent = key ? team.name.toUpperCase() : "RESERVES";
+        card.appendChild(heading);
+
+        if (!key) {
+            const note = document.createElement("div");
+            note.className = "team-note";
+            note.textContent = "Teams assigned on the night";
+            card.appendChild(note);
+        }
+
+        const list = document.createElement("ul");
+        const members = team.members.length ? team.members : ["-"];
+        members.forEach(function (member) {
+            const item = document.createElement("li");
+            item.textContent = member;
+            list.appendChild(item);
+        });
+        card.appendChild(list);
+
+        grid.appendChild(card);
+    });
+
+    teamsEl.appendChild(grid);
+}
+
 async function load() {
     try {
         const response = await fetch(SCRIPT_URL + "?what=bracket");
         const data = await response.json();
         render(data.matches);
+        renderTeams(data.teams);
     } catch (error) {
         if (!bracketEl.querySelector("svg")) {
             bracketEl.innerHTML = '<div class="empty">Could not load the bracket. Refresh the page.</div>';
