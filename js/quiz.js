@@ -18,23 +18,23 @@ const questions = [
 
     {
         question:
-            "You walk into the lab on Halloween night and the whole corridor smells like a restaurant. What is your first thought?",
+            "Halloween night. You arrive at the casale: isolated farmhouse, dark road, zero phone signal. This is the first fifteen minutes of a horror movie. What is your move?",
 
         answers: [
             {
-                text: "Is anyone watching the stove? Somebody here has to be responsible.",
+                text: "Check that everyone else arrived safely. Somebody has to be the responsible one.",
                 type: "SILICON"
             },
             {
-                text: "Whatever it is, I want the recipe. And I'm already holding a fork.",
+                text: "Follow the smell of food. Whatever it is, it's already better than any plan.",
                 type: "DSSC"
             },
             {
-                text: "Follow the smell. The best parties always start near the stove.",
+                text: "Walk straight toward the weirdest noise. That's where the party is.",
                 type: "ORGANIC"
             },
             {
-                text: "Smart plan: arrive early, taste everything, look very busy.",
+                text: "Find the only spot with phone signal. Become very popular.",
                 type: "CIGS"
             }
         ]
@@ -43,23 +43,23 @@ const questions = [
 
     {
         question:
-            "Something in the lab breaks. Again. What do you do?",
+            "Something in the lab breaks. Again. Honestly, it's a Tuesday. What do you do?",
 
         answers: [
             {
-                text: "Open it up and poke around inside. This is how breakthroughs happen.",
+                text: "Open it up and poke around. Worst case, it was already broken.",
                 type: "PEROVSKITE"
             },
             {
-                text: "Check the logbook. This exact thing broke in 2023 and I wrote down the fix.",
+                text: "Read the manual, page by page. Yes, there is a manual. Yes, I'm the only one who knows.",
                 type: "SILICON"
             },
             {
-                text: "Stare at it in silence until it feels guilty.",
+                text: "Make everyone a plate of pasta first. Nobody fixes anything on an empty stomach.",
                 type: "DSSC"
             },
             {
-                text: "Declare it an art installation and keep partying.",
+                text: "Declare it a feature and go refill my drink.",
                 type: "ORGANIC"
             }
         ]
@@ -68,23 +68,23 @@ const questions = [
 
     {
         question:
-            "Something really breaks and nobody knows how to fix it. Somebody whispers: \"Call Fabio.\" What do you do?",
+            "The machine breaks and nobody can fix it. Somebody whispers: \"Call Fabio.\" Everyone goes quiet. What do you do?",
 
         answers: [
             {
-                text: "Call Fabio. Fabio always knows. That is why we have Fabio.",
+                text: "Call Fabio. That's the procedure. Fabio IS the procedure.",
                 type: "SILICON"
             },
             {
-                text: "Who is Fabio? Has anyone actually seen Fabio?",
+                text: "Who is Fabio? Has anyone actually seen Fabio in daylight?",
                 type: "PEROVSKITE"
             },
             {
-                text: "I fix it myself before Fabio hears about it. Tape, screwdriver and confidence.",
+                text: "Volunteer the youngest PhD student to call him. Leadership is delegation.",
                 type: "CIGS"
             },
             {
-                text: "Fabio is not a person. Fabio is a concept. I respect that.",
+                text: "Prepare an offering. Fabio responds well to food.",
                 type: "DSSC"
             }
         ]
@@ -97,15 +97,15 @@ const questions = [
 
         answers: [
             {
-                text: "One spritz, slowly, while quietly keeping an eye on everyone else's glasses.",
+                text: "One spritz, slowly. Someone has to drive home from a farmhouse in the middle of nowhere.",
                 type: "SILICON"
             },
             {
-                text: "Mix three random bottles and call it a new composition. Efficiency unknown.",
+                text: "Mix three bottles and call it a new composition. Efficiency unknown.",
                 type: "PEROVSKITE"
             },
             {
-                text: "Invent a cocktail on the spot and name it after someone in the lab.",
+                text: "Invent a cocktail on the spot and name it after my supervisor. Bitter finish.",
                 type: "ORGANIC"
             },
             {
@@ -118,23 +118,23 @@ const questions = [
 
     {
         question:
-            "You find an unlabeled container of leftovers sitting in the sample fridge. What now?",
+            "It's the fifth hour on the same experiment. A fellow PhD student says: \"One more try and we stop.\" What happens?",
 
         answers: [
             {
-                text: "Open it. Science is about taking risks.",
+                text: "One more try. And then one more. This one is going to be the record.",
                 type: "PEROVSKITE"
             },
             {
-                text: "Analyze it from every angle: smell, color, date. Then decide.",
+                text: "Change one parameter at random and pretend it was in the protocol.",
                 type: "CIGS"
             },
             {
-                text: "Heat it up and share it with everyone. Lunch is a collective experiment.",
+                text: "Suggest a break. Ten people appear with wine. The experiment is forgotten.",
                 type: "ORGANIC"
             },
             {
-                text: "That's a family recipe. I can tell by the smell. Somebody's grandmother is involved.",
+                text: "Go to the kitchen. Everything looks different after a plate of pasta.",
                 type: "DSSC"
             }
         ]
@@ -143,23 +143,23 @@ const questions = [
 
     {
         question:
-            "It is 11:45 and the whole lab starts cooking lunch. How do you behave?",
+            "Lunch at the casale. The pasta is on the stove and a heated debate about the right cooking time begins. What do you do?",
 
         answers: [
             {
-                text: "Be there at 12:00 sharp with my own fork and my own Tupperware, as always.",
+                text: "Package time. To the second. Rules exist for a reason.",
                 type: "SILICON"
             },
             {
-                text: "Offer to help, end up with the best seat and the first plate.",
+                text: "Drain it early and claim it was intentional. Nobody can prove otherwise.",
                 type: "CIGS"
             },
             {
-                text: "Add my own spice to everybody's pot and call it collaboration.",
+                text: "Add three ingredients nobody asked for and call it fusion.",
                 type: "ORGANIC"
             },
             {
-                text: "I'm the one stirring the pot. Everyone agrees the sauce is mine.",
+                text: "Take the pot. \"Step aside, I'll handle the sauce.\"",
                 type: "DSSC"
             }
         ]
@@ -168,11 +168,11 @@ const questions = [
 
     {
         question:
-            "A strange noise comes from the old machine in the corner. Everybody ignores it. You...",
+            "A strange noise comes from the old machine in the corner. Everyone ignores it, because PhD students learn to ignore everything. You...",
 
         answers: [
             {
-                text: "Write it down in the logbook. Someone has to take this seriously.",
+                text: "Switch it off and ask who used it last. Someone has to take this seriously.",
                 type: "SILICON"
             },
             {
@@ -184,7 +184,7 @@ const questions = [
                 type: "ORGANIC"
             },
             {
-                text: "Whisper to it. Some machines respond to kindness.",
+                text: "Dim the lights and wait. Mysterious noises are more fun in the dark.",
                 type: "DSSC"
             }
         ]
@@ -197,7 +197,7 @@ const questions = [
 
         answers: [
             {
-                text: "The printer. How will I print fourteen copies of the protocol?",
+                text: "The printer. My supervisor wants a paper copy and I don't have one.",
                 type: "SILICON"
             },
             {
@@ -205,11 +205,11 @@ const questions = [
                 type: "PEROVSKITE"
             },
             {
-                text: "The coffee machine. No coffee, no solutions.",
+                text: "The moka. No coffee, no PhD. Simple as that.",
                 type: "CIGS"
             },
             {
-                text: "The kitchen stove. If it's broken, nothing smells good anymore.",
+                text: "The stove. If it's broken, nobody eats and the casale falls into chaos.",
                 type: "DSSC"
             }
         ]
@@ -222,7 +222,7 @@ const questions = [
 
         answers: [
             {
-                text: "The reliable choice: chips, napkins and a list of who brought what.",
+                text: "The reliable choice: chips, napkins and a list of who owes me money.",
                 type: "SILICON"
             },
             {
@@ -230,11 +230,11 @@ const questions = [
                 type: "PEROVSKITE"
             },
             {
-                text: "Whatever the lab kitchen already had. Nobody will notice. I'll take the credit.",
+                text: "Whatever was already in the kitchen. Nobody will notice. I'll take the credit.",
                 type: "CIGS"
             },
             {
-                text: "Decorations. Glitter, fake spiderwebs and an inflatable ghost I'll hide near the equipment.",
+                text: "Decorations. Glitter, fake spiderwebs and a plastic skeleton that I will absolutely put on someone's desk.",
                 type: "ORGANIC"
             }
         ]
@@ -274,20 +274,20 @@ const RESULTS = {
         emoji: "☀️",
         name: "SILICON",
         title: "The Reliable Classic",
-        text: "You label every sample, return every tool and always know where the good screwdriver is. Everyone in the lab trusts you, and a small part of them is slightly afraid of you.",
+        text: "You are the only PhD student who has actually read the safety rules. You return every tool, label every sample and arrive on time to meetings. Everyone in the lab trusts you, and a small part of them is slightly afraid of you.",
         power: "Works every day for 25 years without complaining.",
-        weakness: "A bit rigid, a bit heavy, and deeply offended when someone puts lunch in the sample fridge.",
-        fabio: "\"Reliable. If I ever retire, I want you to take my spot.\""
+        weakness: "A bit rigid, a bit heavy, and deeply offended when someone calls the plan flexible.",
+        fabio: "\"Hmph. You can stay.\""
     },
 
     PEROVSKITE: {
         emoji: "🔮",
         name: "PEROVSKITE",
         title: "The Brilliant Troublemaker",
-        text: "Record-breaking efficiency on Monday, completely dead by Friday. You are the most exciting thing in the lab and nobody can say how long it will last.",
+        text: "Record-breaking efficiency on Monday, completely dead by Friday. You are the most exciting PhD student in the lab and nobody can say how long it will last.",
         power: "Unbelievable results when everything goes right.",
         weakness: "Humidity, heat and anyone who asks: but is it stable?",
-        fabio: "\"Please don't open the glovebox again.\""
+        fabio: "\"Don't touch the glovebox. I mean it.\""
     },
 
     CIGS: {
@@ -297,7 +297,7 @@ const RESULTS = {
         text: "Copper, indium, gallium, selenium: four ingredients that should not work together. And yet you fix the broken pump with tape, a screwdriver and absolute confidence.",
         power: "Finds a solution when nothing is working.",
         weakness: "Nobody remembers how you did it, including you.",
-        fabio: "\"I have no idea how you did it. Don't tell me.\""
+        fabio: "\"Don't tell me how you fixed it. I don't want to know.\""
     },
 
     ORGANIC: {
@@ -306,18 +306,18 @@ const RESULTS = {
         title: "The Flexible Free Spirit",
         text: "Light, colorful and endlessly tunable. You bend without breaking, rewrite the rules and somehow turn every lab disaster into a party.",
         power: "Flexibility, style and excellent vibes.",
-        weakness: "Does not survive sunlight, oxygen or Monday mornings.",
-        fabio: "\"Lovely. Now please move the glitter away from the equipment.\""
+        weakness: "Does not survive sunlight, oxygen or the third year of a PhD.",
+        fabio: "\"Move the glitter away from the equipment. NOW.\""
     },
 
     DSSC: {
         emoji: "🍝",
         name: "DSSC",
         title: "The Lab Chef",
-        text: "Dye, electrolyte and a lot of atmosphere. You are the cell you can literally make with blackberries and tea, and you are the reason the whole corridor smells like ragù at 11 AM.",
+        text: "Dye, electrolyte and a lot of atmosphere. You are the cell you can literally make with blackberries and tea, and the reason the whole casale smells like soffritto by lunchtime.",
         power: "Works even in low light, which is perfect for Halloween and for aperitivo lighting.",
         weakness: "There is liquid inside. Leaks, stains and unplanned seconds are possible.",
-        fabio: "\"Whatever you're cooking, save me a plate.\""
+        fabio: "\"...Is there a plate for me?\""
     },
 
     TANDEM: {
@@ -326,8 +326,8 @@ const RESULTS = {
         title: "The Overachiever",
         text: "You are not one personality but two, stacked on top of each other. Together you capture more than either could alone.",
         power: "Efficiency beyond what any single material can reach.",
-        weakness: "Complicated to build and impossible to explain to the person who orders the materials.",
-        fabio: "\"Two of you? Good. Now I have two people to call.\""
+        weakness: "Complicated to build and impossible to explain to your supervisor.",
+        fabio: "\"Two of you. Wonderful. Twice the noise.\""
     },
 
     MULTIJUNCTION: {
@@ -336,7 +336,7 @@ const RESULTS = {
         title: "Fabio (Probably)",
         text: "Three or more personalities tied for first place. Nobody knows exactly what you do, but when you are around, everything works. Either you are very rare and expensive, or you are Fabio.",
         power: "Captures the whole spectrum and fixes everything in the lab.",
-        weakness: "Extremely expensive. Usually found on satellites, or in the basement.",
+        weakness: "Extremely expensive. Usually found on satellites, or in the cellar next to the wine.",
         fabio: "\"...Do I know you?\""
     }
 
@@ -564,7 +564,7 @@ function finishQuiz() {
 
     box.appendChild(bars);
 
-    add("p", "result-note", "Screenshot your result and send it to the group chat. Fabio will be notified.");
+    add("p", "result-note", "Screenshot your result and send it to the group chat. Fabio has been notified. He did not reply.");
 
     const again = document.createElement("button");
     again.className = "next";
