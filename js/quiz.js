@@ -18,23 +18,23 @@ const questions = [
 
     {
         question:
-            "You arrive at the research facility and realize the Halloween party has already started. What's your first move?",
+            "You walk into the lab on Halloween night and the whole corridor smells like a restaurant. What is your first thought?",
 
         answers: [
             {
-                text: "Find out what's going on and get straight into the action.",
+                text: "Is anyone watching the stove? Somebody here has to be responsible.",
                 type: "SILICON"
             },
             {
-                text: "Observe the room for a moment. Something feels... interesting.",
+                text: "Whatever it is, I want the recipe. And I'm already holding a fork.",
                 type: "DSSC"
             },
             {
-                text: "Ignore the plan. Find the most unusual person in the room and introduce yourself.",
+                text: "Follow the smell. The best parties always start near the stove.",
                 type: "ORGANIC"
             },
             {
-                text: "Check that everything is running smoothly before joining the party.",
+                text: "Smart plan: arrive early, taste everything, look very busy.",
                 type: "CIGS"
             }
         ]
@@ -43,123 +43,23 @@ const questions = [
 
     {
         question:
-            "Your experiment suddenly produces a result nobody expected. What do you do?",
+            "Something in the lab breaks. Again. What do you do?",
 
         answers: [
             {
-                text: "Perfect. This is exactly the kind of chaos I was hoping for.",
+                text: "Open it up and poke around inside. This is how breakthroughs happen.",
                 type: "PEROVSKITE"
             },
             {
-                text: "Stay calm, figure out what changed, and work around it.",
-                type: "CIGS"
-            },
-            {
-                text: "Document everything immediately. Unexpected results are still results.",
+                text: "Check the logbook. This exact thing broke in 2023 and I wrote down the fix.",
                 type: "SILICON"
             },
             {
-                text: "Follow the strange result. It might lead somewhere much more interesting.",
+                text: "Stare at it in silence until it feels guilty.",
                 type: "DSSC"
-            }
-        ]
-    },
-
-
-    {
-        question:
-            "Someone challenges you to a completely unnecessary competition at the party. Your reaction?",
-
-        answers: [
-            {
-                text: "Absolutely. I was hoping someone would ask.",
-                type: "SILICON"
             },
             {
-                text: "Depends. Is there a clever way to win without doing all the work?",
-                type: "CIGS"
-            },
-            {
-                text: "I'll participate, but I'm probably going to make up my own rules.",
-                type: "ORGANIC"
-            },
-            {
-                text: "I have no idea why we're doing this, but somehow I am already involved.",
-                type: "PEROVSKITE"
-            }
-        ]
-    },
-
-
-    {
-        question:
-            "The lights suddenly go out. The entire laboratory is dark. What happens next?",
-
-        answers: [
-            {
-                text: "Someone needs to take control. I'll handle it.",
-                type: "SILICON"
-            },
-            {
-                text: "Wait... why does the darkness actually make this place look better?",
-                type: "ORGANIC"
-            },
-            {
-                text: "No problem. I'll find another way to keep things moving.",
-                type: "CIGS"
-            },
-            {
-                text: "Don't turn the lights back on yet. This is getting interesting.",
-                type: "DSSC"
-            }
-        ]
-    },
-
-
-    {
-        question:
-            "You are allowed to design one completely ridiculous Halloween experiment. What do you choose?",
-
-        answers: [
-            {
-                text: "Something beautiful, weird and probably impossible to explain afterwards.",
-                type: "ORGANIC"
-            },
-            {
-                text: "Something that has never been attempted before.",
-                type: "PEROVSKITE"
-            },
-            {
-                text: "Something surprisingly practical that actually works.",
-                type: "SILICON"
-            },
-            {
-                text: "Something mysterious involving strange lights, glowing liquids and absolutely no explanation.",
-                type: "DSSC"
-            }
-        ]
-    },
-
-
-    {
-        question:
-            "Your team has 30 minutes to solve a problem before the experiment begins. How do you behave?",
-
-        answers: [
-            {
-                text: "Make a plan. Divide the work. Get it done.",
-                type: "SILICON"
-            },
-            {
-                text: "Try three completely different approaches and see what survives.",
-                type: "PEROVSKITE"
-            },
-            {
-                text: "Find the simplest solution nobody else noticed.",
-                type: "CIGS"
-            },
-            {
-                text: "Let everyone contribute. The weird idea might be the one that works.",
+                text: "Declare it an art installation and keep partying.",
                 type: "ORGANIC"
             }
         ]
@@ -168,23 +68,23 @@ const questions = [
 
     {
         question:
-            "You discover that the mysterious object on the lab table is actually part of tonight's experiment. What do you do?",
+            "Something really breaks and nobody knows how to fix it. Somebody whispers: \"Call Fabio.\" What do you do?",
 
         answers: [
             {
-                text: "Touch nothing until someone explains the procedure.",
+                text: "Call Fabio. Fabio always knows. That is why we have Fabio.",
                 type: "SILICON"
             },
             {
-                text: "I need to know what it does. Immediately.",
+                text: "Who is Fabio? Has anyone actually seen Fabio?",
                 type: "PEROVSKITE"
             },
             {
-                text: "Look at it from every possible angle. There has to be a clue.",
+                text: "I fix it myself before Fabio hears about it. Tape, screwdriver and confidence.",
                 type: "CIGS"
             },
             {
-                text: "If nobody knows what it is, I am definitely pressing the button.",
+                text: "Fabio is not a person. Fabio is a concept. I respect that.",
                 type: "DSSC"
             }
         ]
@@ -193,24 +93,24 @@ const questions = [
 
     {
         question:
-            "Which Halloween costume would suit you best?",
+            "The aperitivo table appears. How do you approach it?",
 
         answers: [
             {
-                text: "Something that glows in the dark and makes people wonder how it works.",
-                type: "DSSC"
+                text: "One spritz, slowly, while quietly keeping an eye on everyone else's glasses.",
+                type: "SILICON"
             },
             {
-                text: "Something nobody has ever seen before.",
+                text: "Mix three random bottles and call it a new composition. Efficiency unknown.",
                 type: "PEROVSKITE"
             },
             {
-                text: "Something clever that looks simple but has a very good reason behind it.",
-                type: "CIGS"
-            },
-            {
-                text: "Something elegant, strange and slightly difficult to explain.",
+                text: "Invent a cocktail on the spot and name it after someone in the lab.",
                 type: "ORGANIC"
+            },
+            {
+                text: "Read every label twice. The ethanol for cleaning and the ethanol for drinking are NOT the same bottle.",
+                type: "CIGS"
             }
         ]
     },
@@ -218,23 +118,123 @@ const questions = [
 
     {
         question:
-            "Your experiment fails five minutes before the party. What is your response?",
+            "You find an unlabeled container of leftovers sitting in the sample fridge. What now?",
 
         answers: [
             {
-                text: "Stare at it in silence for a moment. The explanation is hiding somewhere in there.",
-                type: "DSSC"
-            },
-            {
-                text: "Well... that wasn't supposed to happen. Interesting.",
+                text: "Open it. Science is about taking risks.",
                 type: "PEROVSKITE"
             },
             {
-                text: "Salvage what works, change the approach and keep going.",
+                text: "Analyze it from every angle: smell, color, date. Then decide.",
                 type: "CIGS"
             },
             {
-                text: "Maybe it didn't fail. Maybe it discovered something.",
+                text: "Heat it up and share it with everyone. Lunch is a collective experiment.",
+                type: "ORGANIC"
+            },
+            {
+                text: "That's a family recipe. I can tell by the smell. Somebody's grandmother is involved.",
+                type: "DSSC"
+            }
+        ]
+    },
+
+
+    {
+        question:
+            "It is 11:45 and the whole lab starts cooking lunch. How do you behave?",
+
+        answers: [
+            {
+                text: "Be there at 12:00 sharp with my own fork and my own Tupperware, as always.",
+                type: "SILICON"
+            },
+            {
+                text: "Offer to help, end up with the best seat and the first plate.",
+                type: "CIGS"
+            },
+            {
+                text: "Add my own spice to everybody's pot and call it collaboration.",
+                type: "ORGANIC"
+            },
+            {
+                text: "I'm the one stirring the pot. Everyone agrees the sauce is mine.",
+                type: "DSSC"
+            }
+        ]
+    },
+
+
+    {
+        question:
+            "A strange noise comes from the old machine in the corner. Everybody ignores it. You...",
+
+        answers: [
+            {
+                text: "Write it down in the logbook. Someone has to take this seriously.",
+                type: "SILICON"
+            },
+            {
+                text: "Turn it up. The more dramatic the noise, the faster we find out what it does.",
+                type: "PEROVSKITE"
+            },
+            {
+                text: "Add a beat to it. Suddenly it's the party playlist.",
+                type: "ORGANIC"
+            },
+            {
+                text: "Whisper to it. Some machines respond to kindness.",
+                type: "DSSC"
+            }
+        ]
+    },
+
+
+    {
+        question:
+            "Rumor says something is broken again. Which one makes you panic?",
+
+        answers: [
+            {
+                text: "The printer. How will I print fourteen copies of the protocol?",
+                type: "SILICON"
+            },
+            {
+                text: "The glovebox. My samples are already dying and now it has a hole.",
+                type: "PEROVSKITE"
+            },
+            {
+                text: "The coffee machine. No coffee, no solutions.",
+                type: "CIGS"
+            },
+            {
+                text: "The kitchen stove. If it's broken, nothing smells good anymore.",
+                type: "DSSC"
+            }
+        ]
+    },
+
+
+    {
+        question:
+            "Somebody asks you to bring something to the party. What do you bring?",
+
+        answers: [
+            {
+                text: "The reliable choice: chips, napkins and a list of who brought what.",
+                type: "SILICON"
+            },
+            {
+                text: "A homemade drink I invented yesterday. Nobody asked, but it exists.",
+                type: "PEROVSKITE"
+            },
+            {
+                text: "Whatever the lab kitchen already had. Nobody will notice. I'll take the credit.",
+                type: "CIGS"
+            },
+            {
+                text: "Decorations. Glitter, fake spiderwebs and an inflatable ghost I'll hide near the equipment.",
                 type: "ORGANIC"
             }
         ]
@@ -247,19 +247,19 @@ const questions = [
 
         answers: [
             {
-                text: "You could always count on them.",
-                type: "SILICON"
-            },
-            {
-                text: "I have absolutely no idea what they were doing, but it was impressive.",
+                text: "Incredible performance. Nobody knows what happened to the furniture.",
                 type: "PEROVSKITE"
             },
             {
-                text: "They made the whole night a little more colorful.",
+                text: "Somehow everything worked out. Nobody knows how, but Fabio would be proud.",
+                type: "CIGS"
+            },
+            {
+                text: "The most colorful person at the party.",
                 type: "ORGANIC"
             },
             {
-                text: "There was definitely something unusual about them.",
+                text: "Best food, best smell, best leftovers. Five stars.",
                 type: "DSSC"
             }
         ]
@@ -274,45 +274,50 @@ const RESULTS = {
         emoji: "☀️",
         name: "SILICON",
         title: "The Reliable Classic",
-        text: "You are the benchmark everyone else is measured against. You show up, you do the job and you rarely make a scene. Nobody throws a good party without someone like you.",
-        power: "Decades of proven reliability.",
-        weakness: "A little rigid, a little heavy, and quietly offended when someone calls you boring."
+        text: "You label every sample, return every tool and always know where the good screwdriver is. Everyone in the lab trusts you, and a small part of them is slightly afraid of you.",
+        power: "Works every day for 25 years without complaining.",
+        weakness: "A bit rigid, a bit heavy, and deeply offended when someone puts lunch in the sample fridge.",
+        fabio: "\"Reliable. If I ever retire, I want you to take my spot.\""
     },
 
     PEROVSKITE: {
         emoji: "🔮",
         name: "PEROVSKITE",
         title: "The Brilliant Troublemaker",
-        text: "Spectacular efficiency, unpredictable behavior. You light up the room and nobody is entirely sure how long it will last.",
-        power: "Record-breaking performance in record time.",
-        weakness: "Stability. Please keep away from humidity, heat and unexpected situations."
+        text: "Record-breaking efficiency on Monday, completely dead by Friday. You are the most exciting thing in the lab and nobody can say how long it will last.",
+        power: "Unbelievable results when everything goes right.",
+        weakness: "Humidity, heat and anyone who asks: but is it stable?",
+        fabio: "\"Please don't open the glovebox again.\""
     },
 
     CIGS: {
-        emoji: "🧩",
+        emoji: "🧰",
         name: "CIGS",
-        title: "The Clever Problem Solver",
-        text: "Copper, indium, gallium, selenium: four ingredients that shouldn't work together, and somehow do. You are the one who quietly fixes everything while the others argue.",
-        power: "Thin, flexible and surprisingly effective.",
-        weakness: "The recipe is complicated, and nobody remembers that you did the hard part."
+        title: "The Duct-Tape Genius",
+        text: "Copper, indium, gallium, selenium: four ingredients that should not work together. And yet you fix the broken pump with tape, a screwdriver and absolute confidence.",
+        power: "Finds a solution when nothing is working.",
+        weakness: "Nobody remembers how you did it, including you.",
+        fabio: "\"I have no idea how you did it. Don't tell me.\""
     },
 
     ORGANIC: {
         emoji: "🎨",
         name: "ORGANIC",
         title: "The Flexible Free Spirit",
-        text: "Light, colorful and endlessly tunable. You bend without breaking, rewrite the rules and make everything look better in the process.",
-        power: "Flexibility and style.",
-        weakness: "Needs encapsulation, moral support and a plan for tomorrow morning."
+        text: "Light, colorful and endlessly tunable. You bend without breaking, rewrite the rules and somehow turn every lab disaster into a party.",
+        power: "Flexibility, style and excellent vibes.",
+        weakness: "Does not survive sunlight, oxygen or Monday mornings.",
+        fabio: "\"Lovely. Now please move the glitter away from the equipment.\""
     },
 
     DSSC: {
-        emoji: "🧪",
+        emoji: "🍝",
         name: "DSSC",
-        title: "The Mysterious Dreamer",
-        text: "Dye, electrolyte and a lot of atmosphere. You are inspired by nature, you work beautifully in dim light and you were clearly made for nights like this.",
-        power: "Performs best when the lights are low.",
-        weakness: "There is liquid inside. Handle with care, leaks are possible."
+        title: "The Lab Chef",
+        text: "Dye, electrolyte and a lot of atmosphere. You are the cell you can literally make with blackberries and tea, and you are the reason the whole corridor smells like ragù at 11 AM.",
+        power: "Works even in low light, which is perfect for Halloween and for aperitivo lighting.",
+        weakness: "There is liquid inside. Leaks, stains and unplanned seconds are possible.",
+        fabio: "\"Whatever you're cooking, save me a plate.\""
     },
 
     TANDEM: {
@@ -320,17 +325,19 @@ const RESULTS = {
         name: "TANDEM",
         title: "The Overachiever",
         text: "You are not one personality but two, stacked on top of each other. Together you capture more than either could alone.",
-        power: "Efficiency beyond what a single material can reach.",
-        weakness: "Complicated to build and even harder to explain at a party."
+        power: "Efficiency beyond what any single material can reach.",
+        weakness: "Complicated to build and impossible to explain to the person who orders the materials.",
+        fabio: "\"Two of you? Good. Now I have two people to call.\""
     },
 
     MULTIJUNCTION: {
-        emoji: "🛰️",
+        emoji: "🦸",
         name: "MULTIJUNCTION",
-        title: "The Impossible to Classify",
-        text: "Three or more personalities tied for first place. You harvest every color of the party at once.",
-        power: "Captures the whole spectrum.",
-        weakness: "Extremely expensive. Usually found on satellites."
+        title: "Fabio (Probably)",
+        text: "Three or more personalities tied for first place. Nobody knows exactly what you do, but when you are around, everything works. Either you are very rare and expensive, or you are Fabio.",
+        power: "Captures the whole spectrum and fixes everything in the lab.",
+        weakness: "Extremely expensive. Usually found on satellites, or in the basement.",
+        fabio: "\"...Do I know you?\""
     }
 
 };
@@ -521,6 +528,7 @@ function finishQuiz() {
 
     box.appendChild(makeTrait("SUPERPOWER", result.power));
     box.appendChild(makeTrait("WEAKNESS", result.weakness));
+    box.appendChild(makeTrait("FABIO SAYS", result.fabio));
 
     // percentuali
     const bars = document.createElement("div");
@@ -556,7 +564,7 @@ function finishQuiz() {
 
     box.appendChild(bars);
 
-    add("p", "result-note", "Screenshot your result and send it to the group chat.");
+    add("p", "result-note", "Screenshot your result and send it to the group chat. Fabio will be notified.");
 
     const again = document.createElement("button");
     again.className = "next";
