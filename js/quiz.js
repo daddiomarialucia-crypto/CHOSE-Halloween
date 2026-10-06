@@ -18,7 +18,7 @@ const questions = [
 
     {
         question:
-            "Halloween night. You arrive at the casale: isolated farmhouse, dark road, zero phone signal. This is the first fifteen minutes of a horror movie. What is your move?",
+            "Halloween night. You arrive at the casale: isolated farmhouse, dark road, fog, one single light on in the lab. This is the first fifteen minutes of a horror movie. What is your move?",
 
         answers: [
             {
@@ -34,7 +34,7 @@ const questions = [
                 type: "ORGANIC"
             },
             {
-                text: "Find the only spot with phone signal. Become very popular.",
+                text: "Let someone else go in first. If nothing happens, I'm right behind them.",
                 type: "CIGS"
             }
         ]
@@ -51,7 +51,7 @@ const questions = [
                 type: "PEROVSKITE"
             },
             {
-                text: "Read the manual, page by page. Yes, there is a manual. Yes, I'm the only one who knows.",
+                text: "Make a list of everything that could be wrong and check it one by one. Someone has to be the adult.",
                 type: "SILICON"
             },
             {
@@ -97,7 +97,7 @@ const questions = [
 
         answers: [
             {
-                text: "One spritz, slowly. Someone has to drive home from a farmhouse in the middle of nowhere.",
+                text: "Pace myself. One drink, one glass of water. My supervisor emails at 8 AM tomorrow.",
                 type: "SILICON"
             },
             {
@@ -105,7 +105,7 @@ const questions = [
                 type: "PEROVSKITE"
             },
             {
-                text: "Invent a cocktail on the spot and name it after my supervisor. Bitter finish.",
+                text: "Make friends with whoever brought the good wine. Then with whoever brought the better wine.",
                 type: "ORGANIC"
             },
             {
@@ -143,23 +143,23 @@ const questions = [
 
     {
         question:
-            "Lunch at the casale. The pasta is on the stove and a heated debate about the right cooking time begins. What do you do?",
+            "At the party, a relative of someone asks you: \"So, when do you finish your PhD?\" What do you say?",
 
         answers: [
             {
-                text: "Package time. To the second. Rules exist for a reason.",
+                text: "\"March.\" I have a Gantt chart. It's laminated.",
                 type: "SILICON"
             },
             {
-                text: "Drain it early and claim it was intentional. Nobody can prove otherwise.",
+                text: "Change the subject so smoothly that nobody notices I didn't answer.",
                 type: "CIGS"
             },
             {
-                text: "Add three ingredients nobody asked for and call it fusion.",
+                text: "\"It's flexible.\" Then walk away with a drink in each hand.",
                 type: "ORGANIC"
             },
             {
-                text: "Take the pot. \"Step aside, I'll handle the sauce.\"",
+                text: "\"Soon.\" And immediately offer them a plate of food.",
                 type: "DSSC"
             }
         ]
@@ -168,23 +168,23 @@ const questions = [
 
     {
         question:
-            "A strange noise comes from the old machine in the corner. Everyone ignores it, because PhD students learn to ignore everything. You...",
+            "Who controls the music at the party?",
 
         answers: [
             {
-                text: "Switch it off and ask who used it last. Someone has to take this seriously.",
+                text: "Me. A carefully prepared playlist, with transitions. Nobody asked, nobody will thank me.",
                 type: "SILICON"
             },
             {
-                text: "Turn it up. The more dramatic the noise, the faster we find out what it does.",
+                text: "Whoever grabs the speaker first. Three genres in one song, and maybe the speaker explodes.",
                 type: "PEROVSKITE"
             },
             {
-                text: "Add a beat to it. Suddenly it's the party playlist.",
+                text: "Everybody adds a song. Chaos, but beautiful chaos.",
                 type: "ORGANIC"
             },
             {
-                text: "Dim the lights and wait. Mysterious noises are more fun in the dark.",
+                text: "Low volume, dim lights, something slow and mysterious. We're a lab, not a club.",
                 type: "DSSC"
             }
         ]
@@ -209,7 +209,7 @@ const questions = [
                 type: "CIGS"
             },
             {
-                text: "The stove. If it's broken, nobody eats and the casale falls into chaos.",
+                text: "The oven. There's a lasagna inside and it's not going to bake itself.",
                 type: "DSSC"
             }
         ]
@@ -218,23 +218,23 @@ const questions = [
 
     {
         question:
-            "Somebody asks you to bring something to the party. What do you bring?",
+            "Somebody challenges you to beer pong. What's your strategy?",
 
         answers: [
             {
-                text: "The reliable choice: chips, napkins and a list of who owes me money.",
+                text: "Same throw, every time. Boring. Effective.",
                 type: "SILICON"
             },
             {
-                text: "A homemade drink I invented yesterday. Nobody asked, but it exists.",
+                text: "All or nothing. Incredible shots, then nothing works. Probably both.",
                 type: "PEROVSKITE"
             },
             {
-                text: "Whatever was already in the kitchen. Nobody will notice. I'll take the credit.",
+                text: "Study the table first. The cups are never perfectly aligned.",
                 type: "CIGS"
             },
             {
-                text: "Decorations. Glitter, fake spiderwebs and a plastic skeleton that I will absolutely put on someone's desk.",
+                text: "Make friends with the other team. Hard to lose when everybody drinks together.",
                 type: "ORGANIC"
             }
         ]
