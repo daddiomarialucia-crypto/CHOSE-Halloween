@@ -1521,3 +1521,34 @@ body::before {
 
     text-decoration: none;
 }
+/* =========================
+   DATA HALLOWEEN (prima pagina)
+   Incolla questo blocco IN FONDO a css/style.css
+========================= */
+
+.event-date {
+    margin-top: 14px;
+
+    font-family: "Creepster", "Chiller", fantasy;
+    font-size: clamp(40px, 12vw, 68px);
+    letter-spacing: 4px;
+    line-height: 1.1;
+
+    color: #ff7a1a;
+
+    text-shadow:
+        0 0 8px rgba(255, 122, 26, 0.7),
+        0 0 28px rgba(255, 122, 26, 0.4),
+        0 3px 0 #5a2200;
+
+    animation: flicker 5s infinite;
+}
+
+@keyframes flicker {
+    0%, 18%, 22%, 62%, 66%, 100% { opacity: 1; }
+    20%, 64% { opacity: 0.75; }
+}
+
+@media (max-width: 480px) {
+    .event-date { letter-spacing: 2px; }
+}
