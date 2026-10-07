@@ -124,9 +124,10 @@ searchEl.addEventListener("input", render);
 
 /* ---------- stato (iscrizioni / voti a tempo) ---------- */
 
+// [MODIFICATO] parametro anti-cache ?t=...
 async function load() {
     try {
-        const response = await fetch(SCRIPT_URL);
+        const response = await fetch(SCRIPT_URL + "?t=" + Date.now());
         const data = await response.json();
 
         // iscrizione
