@@ -25,6 +25,14 @@ form.querySelectorAll('input[name="plusUno"]').forEach(function (radio) {
     });
 });
 
+function contestLink(first, last, label) {
+    const link = document.createElement("a");
+    link.className = "next contest-button";
+    link.href = "vote.html?n=" + encodeURIComponent(first) + "&c=" + encodeURIComponent(last);
+    link.textContent = label;
+    return link;
+}
+
 form.addEventListener("submit", async function (event) {
     event.preventDefault();
 
@@ -48,8 +56,28 @@ form.addEventListener("submit", async function (event) {
         box.appendChild(document.createElement("br"));
         box.appendChild(document.createTextNode("See you in the lab, " + data.nome + "."));
 
+        // invito alla gara dei costumi (con promemoria per il +1)
+        const contest = document.createElement("div");
+        contest.className = "contest-box";
+        contest.style.textAlign = "center";
+
+        const lead = document.createElement("p");
+        lead.className = "contest-note";
+        lead.textContent = "Want to enter the costume contest?";
+        contest.appendChild(lead);
+        contest.appendChild(contestLink(data.nome, data.cognome, "SIGN UP FOR THE COSTUME CONTEST →"));
+
+        if (data.plusUno === "si") {
+            const reminder = document.createElement("p");
+            reminder.className = "contest-note";
+            reminder.textContent = "(Remember to sign up your +1 too!)";
+            contest.appendChild(reminder);
+            contest.appendChild(contestLink(data.piuNome, data.piuCognome, "SIGN UP " + String(data.piuNome).toUpperCase() + " TOO →"));
+        }
+
         form.innerHTML = "";
         form.appendChild(box);
+        form.appendChild(contest);
     } catch (error) {
         message.textContent = "Something went wrong. Check your connection and try again.";
         message.hidden = false;
