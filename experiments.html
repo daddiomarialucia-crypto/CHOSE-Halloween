@@ -16,7 +16,7 @@
     <meta property="og:title" content="C.H.O.S.E. | Experiments">
     <meta property="og:url" content="https://daddiomarialucia-crypto.github.io/CHOSE-Halloween/experiments.html">
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=8">
 
 </head>
 
@@ -69,8 +69,8 @@
 
                 <p class="experiment-description">
 
-                    Register for Halloween night: food restrictions,
-                    costume contest and more.
+                    Register for Halloween night: food restrictions, +1
+                    and more.
 
                 </p>
 
@@ -86,30 +86,26 @@
 
             <!-- EXPERIMENT 02 -->
 
-            <article class="experiment-card">
+            <article class="experiment-card classified" id="card-quiz">
 
                 <div class="experiment-number">
                     EXPERIMENT 02
                 </div>
 
                 <h2 class="experiment-name">
-                    ☀️ What Solar Cell Are You?
+                    👻 CLASSIFIED
                 </h2>
 
                 <p class="experiment-description">
 
-                    A scientifically questionable personality
-                    test designed to determine your true
-                    solar-cell identity.
+                    The research team has requested
+                    additional information.
 
                 </p>
 
-                <a
-                    href="quiz.html"
-                    class="experiment-button"
-                >
-                    START EXPERIMENT →
-                </a>
+                <span class="experiment-button">
+                    COMING SOON
+                </span>
 
             </article>
 
@@ -145,29 +141,25 @@
 
             <!-- EXPERIMENT 04 -->
 
-            <article class="experiment-card">
+            <article class="experiment-card classified" id="card-beerpong">
 
                 <div class="experiment-number">
                     EXPERIMENT 04
                 </div>
 
                 <h2 class="experiment-name">
-                    🍺 Beer Pong Tournament
+                    🔬 CLASSIFIED
                 </h2>
 
                 <p class="experiment-description">
 
-                    Four teams enter. Only one survives.
-                    Follow the bracket live.
+                    Experimental parameters unknown.
 
                 </p>
 
-                <a
-                    href="beerpong.html"
-                    class="experiment-button"
-                >
-                    OPEN BRACKET →
-                </a>
+                <span class="experiment-button">
+                    COMING SOON
+                </span>
 
             </article>
 
@@ -185,6 +177,66 @@
 
     </main>
 
+
+
+    <script src="js/lock.js?v=8"></script>
+    <script>
+
+        var CARDS = {
+            "card-quiz": {
+                key: "quiz",
+                name: "☀️ What Solar Cell Are You?",
+                text: "A scientifically questionable personality test designed to determine your true solar-cell identity.",
+                href: "quiz.html",
+                button: "START EXPERIMENT →"
+            },
+            "card-beerpong": {
+                key: "beerpong",
+                name: "🍺 Beer Pong Tournament",
+                text: "Four teams enter. Only one survives. Follow the bracket live.",
+                href: "beerpong.html",
+                button: "OPEN BRACKET →"
+            }
+        };
+
+        function openCard(card, cfg, preview) {
+            card.classList.remove("classified");
+            card.querySelector(".experiment-name").textContent = cfg.name;
+            card.querySelector(".experiment-description").textContent = cfg.text;
+            if (preview) card.querySelector(".experiment-number").textContent += " · ORGANIZER PREVIEW";
+
+            var link = document.createElement("a");
+            link.className = "experiment-button";
+            link.href = ChoseLock.withOrg(cfg.href);
+            link.textContent = cfg.button;
+
+            var old = card.querySelector(".experiment-button");
+            old.parentNode.replaceChild(link, old);
+        }
+
+        function countdownCard(card, ms) {
+            var button = card.querySelector(".experiment-button");
+            var clock = document.createElement("span");
+            clock.className = "countdown-inline";
+            button.textContent = "DECLASSIFIED IN ";
+            button.appendChild(clock);
+            ChoseLock.countdown(clock, ms, function () { window.location.reload(); });
+        }
+
+        ChoseLock.status().then(function (s) {
+            Object.keys(CARDS).forEach(function (id) {
+                var cfg = CARDS[id];
+                var info = s[cfg.key];
+                var card = document.getElementById(id);
+
+                if (info.open || s.organizer) openCard(card, cfg, !info.open);
+                else if (info.ms !== null) countdownCard(card, info.ms);
+            });
+        }).catch(function () {
+            // se non si riesce a controllare, le schede restano bloccate
+        });
+
+    </script>
 
 </body>
 
