@@ -124,43 +124,62 @@ searchEl.addEventListener("input", render);
 
 /* ---------- stato (iscrizioni / voti a tempo) ---------- */
 
-// [MODIFICATO] parametro anti-cache ?t=...
-async function load() {
+// [MODIFICATO] la fase (iscrizioni / voto / chiuso) viene da js/config.js:
+// si decide subito, senza aspettare il server.
+let phaseTimer = null;
+
+function applyPhase() {
+    const p = ChoseLock.phase();
+
+    // iscrizione
+    $("signupForm").hidden = !p.signup;
+    $("signupClosed").hidden = p.signup;
+    $("signupClosed").textContent = p.voting
+        ? "Sign-ups are closed. Time to vote! 🗳️"
+        : "Sign-ups are closed. 🎃";
+
+    // votazione
+    $("voteArea").hidden = !p.voting;
+    $("voteClosed").hidden = p.voting;
+    $("tabVote").textContent = p.voting ? "2 · VOTE" : "2 · VOTE 🔒";
+
+    const closed = $("voteClosed");
+    closed.textContent = "";
+
+    if (p.signup && p.switchMs !== null) {
+        closed.appendChild(document.createTextNode("Voting is locked. It opens in "));
+        const clock = document.createElement("strong");
+        closed.appendChild(clock);
+        closed.appendChild(document.createTextNode(" 🔒"));
+        ChoseLock.countdown(clock, p.switchMs, null);
+    } else if (p.signup) {
+        closed.textContent = "Voting is locked until the organizers open it during the party. 🔒";
+    } else if (!p.voting) {
+        closed.textContent = "Voting is closed. The winner is coming... 🏆";
+    }
+
+    // ricalcola la fase al prossimo cambio (apertura o chiusura votazioni)
+    clearTimeout(phaseTimer);
+    const next = p.signup ? p.switchMs : (p.voting ? p.endMs : null);
+    if (next !== null && next !== undefined) {
+        phaseTimer = setTimeout(applyPhase, Math.min(next + 500, 2147483000));
+    }
+
+    if (p.voting) loadCandidates();
+}
+
+// la lista dei candidati si chiede al server solo quando si puo' votare
+async function loadCandidates() {
+    if (!ChoseLock.phase().voting) return;
+
     try {
         const response = await fetch(SCRIPT_URL + "?t=" + Date.now());
         const data = await response.json();
 
-        // iscrizione
-        $("signupForm").hidden = !data.signup;
-        $("signupClosed").hidden = data.signup;
-        $("signupClosed").textContent = data.voting
-            ? "Sign-ups are closed. Time to vote! 🗳️"
-            : "Sign-ups are closed. 🎃";
-
-        // votazione
-        $("voteArea").hidden = !data.voting;
-        $("voteClosed").hidden = data.voting;
-
-        // la scheda dei voti resta con il lucchetto finche' non si sblocca
-        $("tabVote").textContent = data.voting ? "2 · VOTE" : "2 · VOTE 🔒";
-
-        const key = data.signup ? "s:" + data.switchAt : "x";
-        if (key !== closedKey) {
-            closedKey = key;
-            const closed = $("voteClosed");
-
-            if (data.signup && data.switchMs !== null && data.switchMs !== undefined) {
-                closed.textContent = "";
-                closed.appendChild(document.createTextNode("Voting is locked. It opens in "));
-                const clock = document.createElement("strong");
-                closed.appendChild(clock);
-                closed.appendChild(document.createTextNode(" 🔒"));
-                ChoseLock.countdown(clock, data.switchMs, load);
-            } else if (data.signup) {
-                closed.textContent = "Voting is locked until the organizers open it during the party. 🔒";
-            } else {
-                closed.textContent = "Voting is closed. The winner is coming... 🏆";
-            }
+        // se il foglio non e' d'accordo con config.js, lo diciamo chiaramente
+        if (!data.voting) {
+            listEl.innerHTML = '<div class="empty">Voting is not open yet on the server. Ask the organizers.</div>';
+            return;
         }
 
         candidates = data.candidates.sort(function (a, b) {
@@ -168,17 +187,10 @@ async function load() {
                    a.cognome.localeCompare(b.cognome, "it", { sensitivity: "base" });
         });
         render();
-
-        if (firstLoad) {
-            setTab(data.signup ? "signup" : "vote");
-            firstLoad = false;
-        }
     } catch (error) {
-        if (firstLoad) {
-            setTab("signup");
-            firstLoad = false;
+        if (!candidates.length) {
+            listEl.innerHTML = '<div class="empty">Could not load the list. Refresh the page.</div>';
         }
-        listEl.innerHTML = '<div class="empty">Could not load the list. Refresh the page.</div>';
     }
 }
 
@@ -267,5 +279,6 @@ voteButton.addEventListener("click", async function () {
     voteButton.textContent = "VOTE";
 });
 
-load();
-setInterval(load, 30000);
+applyPhase();
+setTab(ChoseLock.phase().signup ? "signup" : "vote");
+setInterval(function () { if (!document.hidden) loadCandidates(); }, 30000);
