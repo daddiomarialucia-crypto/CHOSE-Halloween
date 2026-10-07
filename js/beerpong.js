@@ -245,10 +245,21 @@ function renderTeams(teams, isPublic) {
     teamsEl.appendChild(grid);
 }
 
+// [MODIFICATO] parametro anti-cache &t=...
 async function load() {
     try {
-        const response = await fetch(SCRIPT_URL + "?what=bracket" + (ORG ? "&org=" + encodeURIComponent(ORG) : ""));
+        const response = await fetch(
+            SCRIPT_URL + "?what=bracket&t=" + Date.now() +
+            (ORG ? "&org=" + encodeURIComponent(ORG) : "")
+        );
         const data = await response.json();
+
+        // se nel frattempo il torneo e' stato richiuso, ricarica la pagina
+        if (data.locked) {
+            window.location.reload();
+            return;
+        }
+
         render(data.matches);
         renderTeams(data.teams, data.teamsPublic);
     } catch (error) {
