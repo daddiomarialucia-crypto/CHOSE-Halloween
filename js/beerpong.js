@@ -258,5 +258,26 @@ async function load() {
     }
 }
 
-load();
-setInterval(load, 20000);
+function startBeerpong() {
+    document.getElementById("beerBody").hidden = false;
+    load();
+    setInterval(load, 20000);
+}
+
+// Il torneo e' segreto: parte solo se sbloccato (o se si entra con ?org=CHIAVE)
+ChoseLock.status().then(function (s) {
+    const gate = document.getElementById("gate");
+    gate.innerHTML = "";
+
+    if (s.beerpong.open || s.organizer) {
+        if (!s.beerpong.open) gate.appendChild(ChoseLock.previewBanner());
+        startBeerpong();
+        return;
+    }
+
+    gate.appendChild(ChoseLock.lockBox(s.beerpong.ms, function () {
+        window.location.reload();
+    }));
+}).catch(function () {
+    document.getElementById("gate").textContent = "Could not check clearance. Refresh the page.";
+});
