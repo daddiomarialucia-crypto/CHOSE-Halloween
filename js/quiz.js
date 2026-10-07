@@ -18,7 +18,7 @@ const questions = [
 
     {
         question:
-            "Halloween night. You arrive at the casale: isolated farmhouse, dark road, fog, one single light on in the lab. This is the first fifteen minutes of a horror movie. What is your move?",
+            "Halloween night. You arrive at the casale: isolated farmhouse, dark road, fog, one single light on in a window. This is the first fifteen minutes of a horror movie. What is your move?",
 
         answers: [
             {
@@ -34,7 +34,7 @@ const questions = [
                 type: "ORGANIC"
             },
             {
-                text: "Let someone else go in first. If nothing happens, I'm right behind them.",
+                text: "Arrive exactly when the setup is done and the food is ready. Timing is a skill.",
                 type: "CIGS"
             }
         ]
@@ -51,7 +51,7 @@ const questions = [
                 type: "PEROVSKITE"
             },
             {
-                text: "Make a list of everything that could be wrong and check it one by one. Someone has to be the adult.",
+                text: "Stick an OUT OF ORDER sign on it, politely, and move on to plan B.",
                 type: "SILICON"
             },
             {
@@ -97,7 +97,7 @@ const questions = [
 
         answers: [
             {
-                text: "Pace myself. One drink, one glass of water. My supervisor emails at 8 AM tomorrow.",
+                text: "Count the bottles, count the guests. The math has to work.",
                 type: "SILICON"
             },
             {
@@ -105,7 +105,7 @@ const questions = [
                 type: "PEROVSKITE"
             },
             {
-                text: "Make friends with whoever brought the good wine. Then with whoever brought the better wine.",
+                text: "Spritz, wine, a bit of both. I'm very flexible.",
                 type: "ORGANIC"
             },
             {
@@ -143,23 +143,23 @@ const questions = [
 
     {
         question:
-            "At the party, a relative of someone asks you: \"So, when do you finish your PhD?\" What do you say?",
+            "Lunch is over. The sink is full of dishes and nobody is moving. What do you do?",
 
         answers: [
             {
-                text: "\"March.\" I have a Gantt chart. It's laminated.",
+                text: "Wash them. Immediately. A sink like this is an insult to civilization.",
                 type: "SILICON"
             },
             {
-                text: "Change the subject so smoothly that nobody notices I didn't answer.",
+                text: "Create a rota. Make sure my name appears on it as little as possible.",
                 type: "CIGS"
             },
             {
-                text: "\"It's flexible.\" Then walk away with a drink in each hand.",
+                text: "Put on loud music until washing dishes becomes a dance party.",
                 type: "ORGANIC"
             },
             {
-                text: "\"Soon.\" And immediately offer them a plate of food.",
+                text: "I cooked. The rule is that the cook doesn't wash. It's the oldest law of the casale.",
                 type: "DSSC"
             }
         ]
@@ -168,23 +168,23 @@ const questions = [
 
     {
         question:
-            "Who controls the music at the party?",
+            "Midnight. Somebody proposes telling ghost stories in the dark, at the casale, on Halloween. You...",
 
         answers: [
             {
-                text: "Me. A carefully prepared playlist, with transitions. Nobody asked, nobody will thank me.",
+                text: "Check that all the doors are locked. Somebody has to.",
                 type: "SILICON"
             },
             {
-                text: "Whoever grabs the speaker first. Three genres in one song, and maybe the speaker explodes.",
+                text: "Make up the most dramatic story possible and swear it's true.",
                 type: "PEROVSKITE"
             },
             {
-                text: "Everybody adds a song. Chaos, but beautiful chaos.",
+                text: "Add voices, sound effects and a dance. It's now a musical.",
                 type: "ORGANIC"
             },
             {
-                text: "Low volume, dim lights, something slow and mysterious. We're a lab, not a club.",
+                text: "Light a candle, lower my voice and enjoy being scary.",
                 type: "DSSC"
             }
         ]
@@ -197,7 +197,7 @@ const questions = [
 
         answers: [
             {
-                text: "The printer. My supervisor wants a paper copy and I don't have one.",
+                text: "The heating. It's a farmhouse in October. I'm already wearing three layers.",
                 type: "SILICON"
             },
             {
@@ -205,11 +205,11 @@ const questions = [
                 type: "PEROVSKITE"
             },
             {
-                text: "The moka. No coffee, no PhD. Simple as that.",
+                text: "The moka. Nobody in this lab survives the morning without it.",
                 type: "CIGS"
             },
             {
-                text: "The oven. There's a lasagna inside and it's not going to bake itself.",
+                text: "The big pasta pot. Without it we would have to cook in two batches. Unacceptable.",
                 type: "DSSC"
             }
         ]
@@ -218,23 +218,23 @@ const questions = [
 
     {
         question:
-            "Somebody challenges you to beer pong. What's your strategy?",
+            "It's late, and somebody appears with a bottle of homemade limoncello. What do you do?",
 
         answers: [
             {
-                text: "Same throw, every time. Boring. Effective.",
+                text: "One small glass. Slowly. Then water. I have plans for tomorrow.",
                 type: "SILICON"
             },
             {
-                text: "All or nothing. Incredible shots, then nothing works. Probably both.",
+                text: "Pour it for everyone. Whatever happens next is data.",
                 type: "PEROVSKITE"
             },
             {
-                text: "Study the table first. The cups are never perfectly aligned.",
+                text: "Offer to carry the bottle to the kitchen. It does not always arrive.",
                 type: "CIGS"
             },
             {
-                text: "Make friends with the other team. Hard to lose when everybody drinks together.",
+                text: "Turn it into a cocktail with whatever is on the table. Garnish: a plastic spider.",
                 type: "ORGANIC"
             }
         ]
@@ -306,7 +306,7 @@ const RESULTS = {
         title: "The Flexible Free Spirit",
         text: "Light, colorful and endlessly tunable. You bend without breaking, rewrite the rules and somehow turn every lab disaster into a party.",
         power: "Flexibility, style and excellent vibes.",
-        weakness: "Does not survive sunlight, oxygen or the third year of a PhD.",
+        weakness: "Does not survive sunlight, oxygen or Monday mornings.",
         fabio: "\"Move the glitter away from the equipment. NOW.\""
     },
 
@@ -590,4 +590,37 @@ window.selectAnswer = selectAnswer;
 window.nextQuestion = nextQuestion;
 
 
-loadQuestion();
+function startQuiz() {
+
+    document.getElementById("quizBody").hidden = false;
+
+    loadQuestion();
+}
+
+
+// Il quiz e' segreto: parte solo se sbloccato (o se si entra con ?org=CHIAVE)
+ChoseLock.status().then(function(s) {
+
+    const gate = document.getElementById("gate");
+    gate.innerHTML = "";
+
+    if (s.quiz.open || s.organizer) {
+
+        if (!s.quiz.open) {
+            gate.appendChild(ChoseLock.previewBanner());
+        }
+
+        startQuiz();
+        return;
+    }
+
+    gate.appendChild(ChoseLock.lockBox(s.quiz.ms, function() {
+        window.location.reload();
+    }));
+
+}).catch(function() {
+
+    document.getElementById("gate").textContent =
+        "Could not check clearance. Refresh the page.";
+
+});
