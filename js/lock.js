@@ -25,6 +25,34 @@
         });
     }
 
+    // [NUOVO] "2026-10-30T21:00:00+01:00" -> millisecondi (null = mai, 0 = gia' scattato)
+    function time(value) {
+        var v = String(value || "").trim();
+        if (!v) return null;
+        if (v.toLowerCase() === "open") return 0;
+        var t = Date.parse(v);
+        return isNaN(t) ? null : t;
+    }
+
+    // [NUOVO] fase del contest: iscrizioni / votazioni (stessa logica del server)
+    function phase() {
+        var mode = String(CFG.mode || "auto").trim().toLowerCase();
+        var now = Date.now();
+
+        if (mode === "chiuso") return { signup: false, voting: false, switchMs: null, endMs: null };
+        if (mode === "test")   return { signup: true,  voting: true,  switchMs: null, endMs: null };
+
+        var t1 = time(CFG.signupEnd);
+        var t2 = time(CFG.votingEnd);
+
+        return {
+            signup: t1 === null || now < t1,
+            voting: t1 !== null && now >= t1 && (t2 === null || now < t2),
+            switchMs: (t1 !== null && now < t1) ? t1 - now : null,
+            endMs: (t2 !== null && now < t2) ? t2 - now : null
+        };
+    }
+
     function pad(n) {
         return String(n).padStart(2, "0");
     }
@@ -88,7 +116,7 @@
     }
 
     window.ChoseLock = {
-        ORG: ORG, status: status, countdown: countdown, format: format,
+        ORG: ORG, status: status, phase: phase, countdown: countdown, format: format,
         lockBox: lockBox, previewBanner: previewBanner, withOrg: withOrg
     };
 })();
