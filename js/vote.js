@@ -14,6 +14,12 @@ const signupButton = $("signupBtn");
 let candidates = [];
 let selected = null;
 let firstLoad = true;
+let closedKey = "";
+
+// i link dal form precompilano nome e cognome (?n=Nome&c=Cognome)
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get("n")) { $("cNome").value = urlParams.get("n"); $("voterNome").value = urlParams.get("n"); }
+if (urlParams.get("c")) { $("cCognome").value = urlParams.get("c"); $("voterCognome").value = urlParams.get("c"); }
 
 const VOTE_ERRORS = {
     closed: "Voting is not open right now.",
@@ -134,12 +140,26 @@ async function load() {
         $("voteArea").hidden = !data.voting;
         $("voteClosed").hidden = data.voting;
 
-        if (data.signup) {
-            $("voteClosed").textContent = data.switchAt
-                ? "Voting opens on " + whenText(data.switchAt) + ", when sign-ups close. 🎃"
-                : "Voting opens when sign-ups close. 🎃";
-        } else {
-            $("voteClosed").textContent = "Voting is closed. The winner is coming... 🏆";
+        // la scheda dei voti resta con il lucchetto finche' non si sblocca
+        $("tabVote").textContent = data.voting ? "2 · VOTE" : "2 · VOTE 🔒";
+
+        const key = data.signup ? "s:" + data.switchAt : "x";
+        if (key !== closedKey) {
+            closedKey = key;
+            const closed = $("voteClosed");
+
+            if (data.signup && data.switchMs !== null && data.switchMs !== undefined) {
+                closed.textContent = "";
+                closed.appendChild(document.createTextNode("Voting is locked. It opens in "));
+                const clock = document.createElement("strong");
+                closed.appendChild(clock);
+                closed.appendChild(document.createTextNode(" 🔒"));
+                ChoseLock.countdown(clock, data.switchMs, load);
+            } else if (data.signup) {
+                closed.textContent = "Voting is locked until the organizers open it during the party. 🔒";
+            } else {
+                closed.textContent = "Voting is closed. The winner is coming... 🏆";
+            }
         }
 
         candidates = data.candidates.sort(function (a, b) {
