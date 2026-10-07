@@ -176,12 +176,6 @@ async function loadCandidates() {
         const response = await fetch(SCRIPT_URL + "?t=" + Date.now());
         const data = await response.json();
 
-        // se il foglio non e' d'accordo con config.js, lo diciamo chiaramente
-        if (!data.voting) {
-            listEl.innerHTML = '<div class="empty">Voting is not open yet on the server. Ask the organizers.</div>';
-            return;
-        }
-
         candidates = data.candidates.sort(function (a, b) {
             return a.nome.localeCompare(b.nome, "it", { sensitivity: "base" }) ||
                    a.cognome.localeCompare(b.cognome, "it", { sensitivity: "base" });
