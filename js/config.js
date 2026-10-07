@@ -10,17 +10,17 @@
 
 window.CHOSE_CONFIG = {
     // --- pagine segrete ---
-    quiz:     "2026-10-30T21:00:00+01:00",
-    beerpong: "2026-10-30T22:30:00+01:00",
+    quiz:     "2026-10-30T18:00:00+01:00",
+    beerpong: "2026-10-30T18:00:00+01:00",
 
     // --- contest dei costumi ---
-    signupEnd: "2026-10-30T23:00:00+01:00",   // fine iscrizioni = inizio votazioni
-    votingEnd: "2026-10-31T00:30:00+01:00",   // fine votazioni ("" = non si chiudono mai)
+    signupEnd: "2026-10-30T18:00:00+01:00",   // fine iscrizioni = inizio votazioni
+    votingEnd: "2026-10-31T21:30:00+01:00",   // fine votazioni ("" = non si chiudono mai)
 
     // "auto" = usa gli orari qui sopra
     // "test" = iscrizioni e votazioni sempre aperte
     // "chiuso" = iscrizioni e votazioni chiuse
     mode: "auto",
 
-    key: "INCOLLA_QUI_LA_CHIAVE_DI_B6"
+    key: "fd7236c3"
 };
