@@ -1552,3 +1552,51 @@ body::before {
 @media (max-width: 480px) {
     .event-date { letter-spacing: 2px; }
 }
+/* =========================
+   FONT HALLOWEEN (prima pagina)
+   Incolla questo blocco IN FONDO a css/style.css.
+   Se avevi gia' incollato il blocco "DATA HALLOWEEN" di prima,
+   CANCELLALO e usa solo questo.
+========================= */
+
+.event-title {
+    font-family: "Creepster", "Chiller", fantasy;
+    font-size: clamp(38px, 10vw, 60px);
+    font-weight: normal;
+    letter-spacing: 4px;
+    line-height: 1.1;
+
+    color: #f5f2f7;
+
+    text-shadow:
+        0 0 10px rgba(143, 76, 255, 0.6),
+        0 0 30px rgba(143, 76, 255, 0.3);
+}
+
+.event-date {
+    margin-top: 10px;
+
+    font-family: "Creepster", "Chiller", fantasy;
+    font-size: clamp(34px, 10vw, 56px);
+    letter-spacing: 4px;
+    line-height: 1.1;
+
+    color: #ff7a1a;
+
+    text-shadow:
+        0 0 8px rgba(255, 122, 26, 0.7),
+        0 0 28px rgba(255, 122, 26, 0.4),
+        0 3px 0 #5a2200;
+
+    animation: flicker 5s infinite;
+}
+
+@keyframes flicker {
+    0%, 18%, 22%, 62%, 66%, 100% { opacity: 1; }
+    20%, 64% { opacity: 0.75; }
+}
+
+@media (max-width: 480px) {
+    .event-title,
+    .event-date { letter-spacing: 2px; }
+}
