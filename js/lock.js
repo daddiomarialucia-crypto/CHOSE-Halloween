@@ -1,12 +1,28 @@
 // Funzioni condivise per le pagine segrete (esperimenti, quiz, beer pong)
 (function () {
-    var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxQflHOHp5n1X5xETm_AZFr0DexxANyGDaS0LfX6cMEdZp5jMyIvNUfQI2glB-9bM8IyQ/exec";
     var ORG = new URLSearchParams(window.location.search).get("org") || "";
+    var CFG = window.CHOSE_CONFIG || {};
 
-    // [MODIFICATO] parametro anti-cache &t=...
+    // "2026-10-30T21:00:00+01:00" -> { open, ms }
+    function parse(value) {
+        var v = String(value || "").trim();
+        if (!v) return { open: false, ms: null };
+        if (v.toLowerCase() === "open") return { open: true, ms: 0 };
+
+        var t = Date.parse(v);
+        if (isNaN(t)) return { open: false, ms: null };
+
+        var ms = t - Date.now();
+        return { open: ms <= 0, ms: ms > 0 ? ms : 0 };
+    }
+
+    // [MODIFICATO] niente piu' richiesta al server: risponde subito
     function status() {
-        return fetch(SCRIPT_URL + "?what=status&t=" + Date.now() + (ORG ? "&org=" + encodeURIComponent(ORG) : ""))
-            .then(function (response) { return response.json(); });
+        return Promise.resolve({
+            quiz: parse(CFG.quiz),
+            beerpong: parse(CFG.beerpong),
+            organizer: ORG !== "" && ORG === String(CFG.key || "")
+        });
     }
 
     function pad(n) {
