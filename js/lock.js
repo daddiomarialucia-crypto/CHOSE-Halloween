@@ -3,8 +3,9 @@
     var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxQflHOHp5n1X5xETm_AZFr0DexxANyGDaS0LfX6cMEdZp5jMyIvNUfQI2glB-9bM8IyQ/exec";
     var ORG = new URLSearchParams(window.location.search).get("org") || "";
 
+    // [MODIFICATO] parametro anti-cache &t=...
     function status() {
-        return fetch(SCRIPT_URL + "?what=status" + (ORG ? "&org=" + encodeURIComponent(ORG) : ""))
+        return fetch(SCRIPT_URL + "?what=status&t=" + Date.now() + (ORG ? "&org=" + encodeURIComponent(ORG) : ""))
             .then(function (response) { return response.json(); });
     }
 
