@@ -1,16 +1,26 @@
-// js/config.js  (FILE NUOVO: crealo dentro la cartella js)
+// js/config.js  (SOSTITUISCE il file di prima)
 //
-// Orari di sblocco delle pagine segrete.
-// Formato: "AAAA-MM-GGTHH:MM:00+01:00"  (il 30 ottobre l'Italia e' a +01:00)
-//   - data e ora  -> la pagina si sblocca a quell'ora
-//   - "open"      -> sbloccata subito
-//   - ""          -> bloccata, senza data ("TOP SECRET")
+// Formato date: "AAAA-MM-GGTHH:MM:00+01:00"
+// (l'ora legale e' finita il 25 ottobre 2026, quindi il 30 ottobre e dopo si usa +01:00)
+//   - data e ora  -> scatta a quell'ora
+//   - "open"      -> gia' scattato
+//   - ""          -> mai (bloccata / nessuna scadenza)
 //
-// "key" deve essere UGUALE alla chiave scritta nella cella B6 del foglio "Orari".
-// Con la chiave, aprendo la pagina con ?org=CHIAVE si vedono anche le pagine bloccate.
+// "key" = la chiave della cella B6 del foglio "Orari" (tieni quella che avevi gia' messo).
 
 window.CHOSE_CONFIG = {
-    quiz:     "2026-10-30T18:00:00+01:00",
-    beerpong: "2026-10-30T18:00:00+01:00",
-    key:      "fd7236c3"
+    // --- pagine segrete ---
+    quiz:     "2026-10-30T21:00:00+01:00",
+    beerpong: "2026-10-30T22:30:00+01:00",
+
+    // --- contest dei costumi ---
+    signupEnd: "2026-10-30T23:00:00+01:00",   // fine iscrizioni = inizio votazioni
+    votingEnd: "2026-10-31T00:30:00+01:00",   // fine votazioni ("" = non si chiudono mai)
+
+    // "auto" = usa gli orari qui sopra
+    // "test" = iscrizioni e votazioni sempre aperte
+    // "chiuso" = iscrizioni e votazioni chiuse
+    mode: "auto",
+
+    key: "INCOLLA_QUI_LA_CHIAVE_DI_B6"
 };
